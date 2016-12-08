@@ -1,0 +1,50 @@
+<template>
+  <div class="row" show.bind="questionnaireEnabled">
+    <div class="small-12 columns">
+      <h4>${selectedDimension.id.name}</h4>
+      <form>
+        <div class="large-6 columns" repeat.for="q of selectedDimension.questions">
+          <label>${q.question}</label>
+          <div if.bind="q.options">
+            <div repeat.for="o of q.options">
+              <input checked.bind="q.value" type="radio" name="${q.id}" value.bind="o.name" id="${q.id}"><label for="${q.id}">${o.name}</label>
+            </div>
+          </div>
+          <div if.bind="!q.options">
+            <input checked.bind="q.value" type="radio" name="${q.id}" value="true" id="${q.id}"><label for="${q.id}">Cierto</label>
+            <input checked.bind="q.value" type="radio" name="${q.id}" value="false" id="${q.id}"><label for="${q.id}">Falso</label>
+          </div>
+        </div>
+        <div class="large-12 columns">
+          <p>Información adicional, en caso de que su institución tenga un nuevo programa educativo por favor comentelo aquí.</p>
+          <textarea placeholder="Comentarios" value.bind="selectedDimension.comment"></textarea>
+        </div>
+        <div class="large-6 columns">
+          Has contestado ${answeredQuestions} de ${totalProperties} preguntas
+        </div>
+        <div class="large-6 columns">
+          <a click.delegate="saveQuestionnaire()" class="button success">Guardar</a>
+          <a click.delegate="hideQuestionnaire()" class="button secondary">Regresar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row" show.bind="!questionnaireEnabled">
+    <div class="small-12 columns">
+      <h4>Modelo de gestión de calidad</h4>
+      <p>
+      Bienvenido, aquí puede consultar el avance de ${me.institution}
+      </p>
+      <ol>
+        <li repeat.for="[k, v] of dimensions">
+          ${v.id.name}
+          <ul>
+            <li repeat.for="[k, v] of v.subdimensions">
+              <a click.delegate="showQuestionnaire(v)">${v.id.name}</a> ${countAnswers(v)} de ${v.questions.length} conestadas
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,22 @@
+<template>
+  <section class="au-animate">
+    <div class="row login-row">
+      <div class="medium-6 medium-centered large-4 large-centered columns">
+
+        <form submit.delegate="submit()">
+          <div class="row column login-form">
+            <h4 class="text-center educa-login">Educa</h4>
+            <label>Nombre de usuario
+              <input type="text" value.bind="username" placeholder="Nombre de usuario">
+            </label>
+            <label>Password
+              <input type="password" value.bind="password" placeholder="Password">
+            </label>
+            <p><input type="submit" class="button expanded" value="Entrar" /></p>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+</template>
