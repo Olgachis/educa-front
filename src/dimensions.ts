@@ -60,6 +60,14 @@ export class Dimensions {
       body: json(this.selectedDimension)
     });
     await response;
+    const evaluation = await api.fetch('/api/qualityEvaluation');
+    this.evaluation = await evaluation.json();
+    for(var kd in this.evaluation.dimensions) {
+      var dimension = this.evaluation.dimensions[kd];
+      dimension.subdimensions = buildMap(dimension.subdimensions);
+    }
+    this.dimensions = buildMap(this.evaluation.dimensions);
+
     this.selectedDimension = null;
     this.questionnaireEnabled = false;
   }
