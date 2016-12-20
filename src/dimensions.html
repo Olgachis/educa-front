@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="large-12 columns">
-          <p>Información adicional, en caso de que su institución tenga un nuevo programa educativo por favor comentelo aquí.</p>
+          <p>Información adicional, en caso que su Institución tenga un nuevo programa educativo por favor comentelo aquí.</p>
           <textarea placeholder="Comentarios" value.bind="selectedDimension.comment"></textarea>
         </div>
         <div class="large-6 columns">
@@ -31,9 +31,9 @@
   </div>
   <div class="row" show.bind="!questionnaireEnabled">
     <div class="small-12 columns">
-      <h4>Modelo de gestión de calidad</h4>
+      <h4>Modelo de Gestión de Calidad Institucional EDUCA</h4>
       <p>
-      Bienvenido, aquí puede consultar el avance de ${me.institution}
+      Bienvenido, aquí puede consultar el avance de: ${me.institution}
       </p>
       <ol>
         <li repeat.for="[k, v] of dimensions">
