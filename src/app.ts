@@ -1,6 +1,16 @@
 import {Aurelia} from 'aurelia-framework';
 import {Redirect, Router, RouterConfiguration} from 'aurelia-router';
 
+import * as jQuery from 'jquery';
+import 'gasparesganga-jquery-loading-overlay/src/loadingoverlay'
+import 'foundation-sites';
+
+// Ugly hacks
+let $ = jQuery as any;
+let w = window as any;
+let Foundation = w.Foundation as any;
+// End ugly hacks
+
 class AuthorizeStep {
   run(routingContext, next) {
     if (routingContext.getAllInstructions().some(i => i.config.auth)) {
@@ -34,4 +44,10 @@ export class App {
 
     this.router = router;
   }
+
+  hideModal() {
+    console.log('Hide modal');
+    w.$modal.close();
+  }
+  
 }

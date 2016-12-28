@@ -4,6 +4,7 @@
     "module": "es2015",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowUnreachableCode": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
     "sourceMap": true,

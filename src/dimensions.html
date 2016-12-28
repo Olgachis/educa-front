@@ -7,12 +7,12 @@
           <label>${q.question}</label>
           <div if.bind="q.options">
             <div repeat.for="o of q.options">
-              <input checked.bind="q.value" type="radio" name="${q.id}" value.bind="o.name" id="${q.id}"><label for="${q.id}">${o.name}</label>
+              <input checked.bind="q.value" type="radio" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}"><label for="${q.id}-${o.name}">${o.name}</label>
             </div>
           </div>
           <div if.bind="!q.options">
-            <input checked.bind="q.value" type="radio" name="${q.id}" value="true" id="${q.id}"><label for="${q.id}">Cierto</label>
-            <input checked.bind="q.value" type="radio" name="${q.id}" value="false" id="${q.id}"><label for="${q.id}">Falso</label>
+            <input checked.bind="q.value" type="radio" name="${q.id}" value="true" id="${q.id}-true"><label for="${q.id}-true">Cierto</label>
+            <input checked.bind="q.value" type="radio" name="${q.id}" value="false" id="${q.id}-false"><label for="${q.id}-false">Falso</label>
           </div>
         </div>
         <div class="large-12 columns">
@@ -36,10 +36,10 @@
       Bienvenido, aquí puede consultar el avance de: ${me.institution}
       </p>
       <ol>
-        <li repeat.for="[k, v] of dimensions">
-          ${v.id.name}
+        <li repeat.for="d of dimensions">
+          ${d.id.name}
           <ul>
-            <li repeat.for="[k, v] of v.subdimensions">
+            <li repeat.for="v of d.subdimensions">
               <a click.delegate="showQuestionnaire(v)">${v.id.name}</a> ${countAnswers(v)} de ${v.questions.length} contestadas
             </li>
           </ul>

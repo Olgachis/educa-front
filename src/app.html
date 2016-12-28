@@ -1,9 +1,16 @@
 <template>
   <require from="./nav-bar.html"></require>
-  
+
   <nav-bar router.bind="router"></nav-bar>
 
   <div class="page-host ${router.currentInstruction.config.class}">
     <router-view></router-view>
   </div>
+  <div class="reveal" id="modal-data" data-reveal>
+    <p class="message"></p>
+    <button click.delegate="hideModal()" class="close-button" data-close aria-label="Cerrar" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
 </template>
