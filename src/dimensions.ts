@@ -80,7 +80,7 @@ export class Dimensions {
     Utils.hideSpinner();
     if(result.status === 200) {
       let missing = this.totalProperties - this.answeredQuestions;
-      Utils.showModal(`Datos guardados correctamente, faltan por contestar <strong>${missing}</strong> reactivos para <strong>${this.selectedDimension.id.name}</strong>`);
+      Utils.showModal(`Datos guardados correctamente, faltan por contestar <strong>${missing}</strong> reactivos para <strong>${this.selectedDimension.id.number} ${this.selectedDimension.id.name}</strong>`);
     } else {
       Utils.showModal('Ocurrió un error al guardar los datos');
     }

@@ -1,6 +1,6 @@
 import {HttpClient} from 'aurelia-fetch-client';
 
-let host = "http://localhost:8080"
+let host = "http://api.educa.iamedu.io"
 
 export class Api {
   refresh(refreshToken) {

@@ -2,6 +2,7 @@
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
 import {Api} from './api';
+import {Utils} from './utils';
 
 @inject(Router)
 export class Welcome {
@@ -30,6 +31,7 @@ export class Welcome {
       this.router.navigate('dimensions');
     } else {
       //Handle error
+      Utils.showModal('Nombre de usuario y/o password incorrectos, favor de verificar');
     }
   }
 
