@@ -28,11 +28,11 @@ export class Dimensions {
 
   @computedFrom('selectedDimension.questions')
   get totalProperties() {
-    return this.selectedDimension && this.selectedDimension.questions.length;
+    return this.selectedDimension && this.selectedDimension.questions && this.selectedDimension.questions.length;
   }
 
   get answeredQuestions() {
-    return this.selectedDimension && this.selectedDimension.questions.filter((question)=>question.value).length;
+    return this.selectedDimension && this.selectedDimension.questions && this.selectedDimension.questions.filter((question)=>question.value).length;
   }
 
   countAnswers(dimension) {

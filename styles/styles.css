@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+.a-question {
+  height: 120px;
+}
+
 .welcome {
   background: url(/images/pencils.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
