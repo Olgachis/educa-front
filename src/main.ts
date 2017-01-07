@@ -2,7 +2,7 @@
 // we want font-awesome to load as soon as possible to show the fa-spinner
 import '../styles/styles.css';
 import 'font-awesome/css/font-awesome.css';
-import 'foundation-sites/dist/foundation.css'
+import 'foundation-sites/dist/css/foundation.css'
 //import 'foundation-sites';
 
 // comment out if you don't want a Promise polyfill (remove also from webpack.config.js)
