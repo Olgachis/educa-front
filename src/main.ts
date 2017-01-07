@@ -11,8 +11,14 @@ Bluebird.config({ warnings: false });
 
 export async function configure(aurelia: Aurelia) {
   aurelia.use
-    .standardConfiguration()
-    .developmentLogging();
+  .standardConfiguration()
+  .developmentLogging()
+  .plugin('aurelia-configuration', config => {
+    config.setEnvironments({
+      development: ['localhost'],
+      production: ['red.educa.org.mx']
+    });
+  });
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');
@@ -27,7 +33,7 @@ export async function configure(aurelia: Aurelia) {
   // if you would like your website to work offline (Service Worker), 
   // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:
   /*
-  const offline = await System.import('offline-plugin/runtime');
-  offline.install();
-  */
+     const offline = await System.import('offline-plugin/runtime');
+     offline.install();
+   */
 }

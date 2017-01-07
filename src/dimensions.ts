@@ -3,6 +3,9 @@ import {HttpClient, json} from 'aurelia-fetch-client';
 import {Api} from './api';
 import {Utils} from './utils';
 
+import {inject} from 'aurelia-framework';
+import {AureliaConfiguration} from 'aurelia-configuration';
+
 function buildArray(obj) {
   return Object.keys(obj).reduce((arr, key) => {
     arr.push(obj[key]);
@@ -10,17 +13,24 @@ function buildArray(obj) {
   }, new Array());
 }
 
+@inject(AureliaConfiguration)
 export class Dimensions {
   public me;
   public evaluation;
   public dimensions;
   public selectedDimension;
   public questionnaireEnabled;
+  private config;
+
+
+  constructor(config) {
+    this.config = config;
+  }
 
   async activate(): Promise<void> {
     this.questionnaireEnabled = false;
     await fetch;
-    let api = new Api();
+    let api = new Api(this.config);
     const me = await api.fetch('/api/me');
     this.me = await me.json();
     await this.fetchData();
@@ -50,7 +60,7 @@ export class Dimensions {
   }
 
   async fetchData() {
-    let api = new Api();
+    let api = new Api(this.config);
     const evaluation = await api.fetch('/api/qualityEvaluation');
     this.evaluation = await evaluation.json();
     for(var kd in this.evaluation.dimensions) {
@@ -69,7 +79,7 @@ export class Dimensions {
   async saveQuestionnaire() {
 
     Utils.showSpinner();
-    let api = new Api();
+    let api = new Api(this.config);
     let response = api.fetch('/api/qualityEvaluation/' + this.selectedDimension.id.number, {
       method: 'post',
       body: json(this.selectedDimension)

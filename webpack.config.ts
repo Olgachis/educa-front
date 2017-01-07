@@ -94,7 +94,7 @@ let config = generateConfig(
     envDev(ENV !== 'test' ? {} : {devtool: 'inline-source-map'}) :
     envProd({ /* devtool: '...' */ }),
 
-  aurelia({root: rootDir, src: srcDir, title: title, baseUrl: baseUrl}),
+  aurelia({root: rootDir, src: srcDir, title: title, baseUrl: baseUrl, ENV: ENV}),
   typescript(ENV !== 'test' ? {} : { options: { doTypeCheck: false, sourceMap: false, inlineSourceMap: true, inlineSources: true } }),
   html(),
   css({ filename: 'styles.css', allChunks: true, sourceMap: false }),

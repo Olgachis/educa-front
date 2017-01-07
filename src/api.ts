@@ -1,14 +1,17 @@
 import {HttpClient} from 'aurelia-fetch-client';
 
-let host = "http://api.educa.iamedu.io"
-
 export class Api {
+  private endpoint;
+
+  constructor(config) {
+    this.endpoint = config.get('api.endpoint');
+  }
   refresh(refreshToken) {
     let client = new HttpClient();
     let data = new FormData() as any;
     data.set('refresh_token', refreshToken);
     data.set('grant_type', 'refresh_token');
-    return client.fetch(host + "/oauth/token", {
+    return client.fetch(this.endpoint + "/oauth/token", {
       method: "POST",
       body: data,
       headers: {
@@ -23,7 +26,7 @@ export class Api {
     data.set('username', username);
     data.set('password', password);
     data.set('grant_type', 'password');
-    return client.fetch(host + "/oauth/token", {
+    return client.fetch(this.endpoint + "/oauth/token", {
       method: "POST",
       body: data,
       headers: {
@@ -35,7 +38,7 @@ export class Api {
   fetch(url: string, params: any = {}) {
     let client = new HttpClient();
     let obj = localStorage.getItem('auth_token');
-    url = host + url;
+    url = this.endpoint + url;
     if(obj) {
       let jsonData = JSON.parse(obj);
       let token = jsonData.access_token;
