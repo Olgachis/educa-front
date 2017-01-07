@@ -1,0 +1,10 @@
+{
+  "api": {
+    "endpoint": "http://api.educa.iamedu.io"
+  },
+  "development": {
+    "api": {
+      "endpoint": "http://localhost:8080"
+    }
+  }
+}
