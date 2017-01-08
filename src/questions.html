@@ -1,0 +1,38 @@
+<template>
+  <div class="row">
+    <div class="small-12 columns">
+      <h4>${evaluation.institutionName}</h4>
+      <h5>Tipo de cuestionario: ${evaluation.institutionType}</h5>
+      <p show.bind="evaluation.internship">Esta institución tiene internado</p>
+      <p show.bind="evaluation.initialEducation">Esta institución tiene educación inicial</p>
+      <p show.bind="evaluation.preschool">Esta institución tiene educación preescolar</p>
+      <p show.bind="evaluation.basic">Esta institución tiene educación primaria</p>
+      <p show.bind="evaluation.secondary">Esta institución tiene educación secundaria</p>
+      <p show.bind="evaluation.highSchool">Esta institución tiene educación preparatoria</p>
+      <table>
+        <thead>
+          <th>Num</th>
+          <th>Id</th>
+          <th>Puntos</th>
+          <th>Dimensión</th>
+          <th>Subdimensión</th>
+          <th>Pregunta</th>
+        </thead>
+        <tbody>
+          <template repeat.for="d of dimensions">
+            <template repeat.for="s of d.subdimensions">
+              <tr repeat.for="q of s.questions">
+                <td>${q.id}</td>
+                <td>${q.num}</td>
+                <td>${q.priority}</td>
+                <td>${d.id.name}</td>
+                <td>${s.id.name}</td>
+                <td>${q.question}</td>
+              </tr>
+            </template>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
