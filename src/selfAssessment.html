@@ -139,8 +139,10 @@
           <dd>${averageScore}</dd>
         </dl>
       </div>
-      <div id="levelChart" style="width: 100%">
-        <svg style="width:100%; height:80px"></svg>
+      <div class="chart">
+        <figure id="levelChart">
+          <svg style="width:100%; height:80px"></svg>
+        </figure>
       </div>
       <p>En este apartado la institución puede ubicar en qué nivel del trayecto de consolidación institucional se encuentra para alcanzar el nivel esperado de acuerdo a los criterios de evaluación del Modelo de Gestión Institucional.</p>
       <p>Conocer este resultado le permitirá a la institución visualizar su Plan de Mejora EDUCA, a través del cual podrán identificar los puntos fuertes y los débiles, lo que se hace bien y lo que se hace mal, para definir las áreas en las que se va a concretar la intervención y las acciones señaladas en los objetivos del Plan de Mejora EDUCA.</p>
@@ -153,9 +155,11 @@
         <li><strong>Nivel de madurez institucional  Alto riesgo:</strong> Estas instituciones no cumplen con la mitad de los indicadores del Modelo y por lo tanto su permanencia está en alto riesgo. En este nivel, las instituciones presentan un puntaje entre 54 o menos indicadores cubiertos, y no sólo están en peligro de continuidad, sino de desincorporación de la RED EDUCA, en caso de que no se realicen acciones concretas para elevar la calificación.</li>
       </ul>
       <p>Con base en las indicaciones presentadas te invitamos a revisar a detalle el desglose de tus resultados <strong>por dimensión institucional</strong>, para identificar las áreas de oportunidad que orientarán tu proceso de transformación institucional.</p>
-      <figure id="dimensionsChart" style='width: 100%;'>
-        <svg style='height:600px;width:100%'></svg>
-      </figure>
+      <div class="chart">
+        <figure id="dimensionsChart">
+          <svg style='height:600px;width:100%'></svg>
+        </figure>
+      </div>
       <p>Una vez identificado el nivel mínimo requerido por dimensión institucional, debes ubicar en qué nivel se encuentra la institución de acuerdo con el resultado de la evaluación, a partir del cual se deberá iniciar el diseño del Plan de Mejora EDUCA en las dimensiones en las que el resultado no haya sido el mínimo esperado. En aquellas dimensiones en donde el resultado obtenido sea igual o mayor al mínimo esperado, es necesario definir objetivos en el Plan de Mejora EDUCA para pasar a la Fase de consolidación institucional.</p>
       <h3>Orientación del Plan de Mejora EDUCA con base en los resultados obtenidos</h3>
       <table>
@@ -200,36 +204,44 @@
         <h4>Dimensiones institucionales en consolidación:</h4>
         <template repeat.for="d of consolidation">
           <strong>${d.id.name}</strong>
-          <figure id="sub-${d.id.number}" style='width: 100%;'>
-            <svg style='height:600px;width:100%'></svg>
-          </figure>
+          <div class="chart">
+            <figure id="sub-${d.id.number}">
+              <svg style='height:480px;width:100%'></svg>
+            </figure>
+          </div>
         </template>
       </div>
       <div show.bind="stable.length">
         <h4>Dimensiones institucionales estables:</h4>
         <template repeat.for="d of stable">
           <strong>${d.id.name}</strong>
-          <figure id="sub-${d.id.number}" style='width: 100%;'>
-            <svg style='height:600px;width:100%'></svg>
-          </figure>
+          <div class="chart">
+            <figure id="sub-${d.id.number}">
+              <svg style='height:480px;width:100%'></svg>
+            </figure>
+          </div>
         </template>
       </div>
       <div show.bind="unstable.length">
         <h4>Dimensiones institucionales inestables:</h4>
         <template repeat.for="d of unstable">
           <strong>${d.id.name}</strong>
-          <figure id="sub-${d.id.number}" style='width: 100%;'>
-            <svg style='height:600px;width:100%'></svg>
-          </figure>
+          <div class="chart">
+            <figure id="sub-${d.id.number}">
+              <svg style='height:480px;width:100%'></svg>
+            </figure>
+          </div>
         </template>
       </div>
       <div show.bind="highRisk.length">
         <h4>Dimensiones institucionales en alto riesgo:</h4>
         <template repeat.for="d of highRisk">
           <strong>${d.id.name}</strong>
-          <figure id="sub-${d.id.number}" style='width: 100%;'>
-            <svg style='height:600px;width:100%'></svg>
-          </figure>
+          <div class="chart">
+            <figure id="sub-${d.id.number}">
+              <svg style='height:480px;width:100%'></svg>
+            </figure>
+          </div>
         </template>
       </div>
     </div>

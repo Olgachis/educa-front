@@ -20,6 +20,7 @@ export class Dimensions {
   public dimensions;
   public selectedDimension;
   public questionnaireEnabled;
+  public finished;
   private config;
 
 
@@ -63,13 +64,24 @@ export class Dimensions {
     let api = new Api(this.config);
     const evaluation = await api.fetch('/api/qualityEvaluation');
     this.evaluation = await evaluation.json();
+    var finished = true;
     for(var kd in this.evaluation.dimensions) {
       var dimension = this.evaluation.dimensions[kd];
       dimension.subdimensions = buildArray(dimension.subdimensions);
       dimension.subdimensions.sort((a, b) => {
         return a.sortOrder - b.sortOrder;
       });
+      for(var ks in dimension.subdimensions) {
+        var subdimension = dimension.subdimensions[ks];
+        for(var kq in subdimension.questions) {
+          var question = subdimension.questions[kq];
+          if(question.value == null) {
+            finished = false;
+          }
+        }
+      }
     }
+    this.finished = finished;
     this.dimensions = buildArray(this.evaluation.dimensions);
     this.dimensions.sort((a, b) => {
       return a.id.sortOrder - b.id.sortOrder;
