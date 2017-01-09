@@ -40,7 +40,8 @@ export class App {
     config.map([
       { route: ['', 'welcome'], name: 'welcome',    moduleId: './welcome',    nav: true, title: 'Modelo de gestión de calidad institucional EDUCA', class: 'welcome' },
       { route: 'dimensions', name: 'dimensions', moduleId: './dimensions', nav: true, title: 'Dimensiones', auth: true },
-      { route: 'questions', name: 'questions', moduleId: './questions', nav: true, title: 'Preguntas', auth: true }
+      { route: 'questions', name: 'questions', moduleId: './questions', nav: true, title: 'Preguntas', auth: true },
+      { route: 'selfAssessment', name: 'selfAssessment', moduleId: './selfAssessment', nav: true, title: 'Autodiagnóstico', auth: true }
     ]);
 
     this.router = router;
