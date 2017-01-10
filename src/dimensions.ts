@@ -82,6 +82,7 @@ export class Dimensions {
       }
     }
     this.finished = finished;
+    console.log(this.finished);
     this.dimensions = buildArray(this.evaluation.dimensions);
     this.dimensions.sort((a, b) => {
       return a.id.sortOrder - b.id.sortOrder;
