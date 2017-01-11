@@ -96,9 +96,9 @@ export class ImprovementPlan {
         if(!q) break;
         if(q.question.options) {
           var label = '(';
-          for(var i = 0; i < q.question.options.length; i++) {
-            label += q.question.options[i].name;
-            if(i < q.question.options.length - 1) {
+          for(var j = 0; j < q.question.options.length; j++) {
+            label += q.question.options[j].name;
+            if(j < q.question.options.length - 1) {
               label += ', ';
             }
           }
