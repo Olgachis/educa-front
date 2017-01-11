@@ -1,0 +1,46 @@
+<template>
+  <div class="row">
+    <div class="small-12 columns">
+      <p>Seleccione los reactivos en los que busca trabajar para si siguiente periodo</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Dimensión</th>
+            <th>Subdimensión</th>
+            <th>Reactivo</th>
+            <th>Acción</th>
+            <th>Meta</th>
+            <th>Responsable</th>
+            <th>Evidencia</th>
+            <th>Recursos y apoyo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="q of questions">
+            <td>${q.dimensionId.number} ${q.dimensionId.name}</td>
+            <td>${q.subdimensionId.number} ${q.subdimensionId.name}</td>
+            <td>${q.question}</td>
+            <td>
+              <textarea placeholder="Acción" value.bind="q.action"></textarea>
+            </td>
+            <td>
+              <textarea placeholder="Meta" value.bind="q.goal"></textarea>
+            </td>
+            <td>
+              <textarea placeholder="Responsable" value.bind="q.responsible"></textarea>
+            </td>
+            <td>
+              <textarea placeholder="Evidencia" value.bind="q.evidence"></textarea>
+            </td>
+            <td>
+              <textarea placeholder="Recursos" value.bind="q.resources"></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="float-right">
+        <a class="button primary" click.delegate="saveData(plan)">Guardar</a>
+      </div>
+    </div>
+  </div>
+</template>
