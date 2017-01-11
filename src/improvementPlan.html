@@ -1,0 +1,50 @@
+<template>
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>${evaluation.institutionName}</h3>
+      <h4>Plan de mejora</h4>
+      <p>Es importante tomar en cuenta los resultados del periodo actual</p>
+      <dl>
+        <dt>Calificación EDUCA</dt>
+        <dd>${score}</dd>
+      </dl>
+      <div class="chart">
+        <figure id="period-0">
+          <svg style='height:480px;width:100%'></svg>
+        </figure>
+      </div>
+      <p>A continuación se muestran los reactivos sobre los que se recomienda trabajar para los siguientes periodos</p>
+      <template repeat.for="p of questions">
+        <h5>Periodo ${p.period}</h5>
+        <p>Resultados esperados al finalizar este periodo</p>
+        <dl>
+          <dt>Calificación EDUCA</dt>
+          <dd>${p.score}</dd>
+        </dl>
+        <div class="chart">
+          <figure id="period-${p.period}">
+            <svg style='height:480px;width:100%'></svg>
+          </figure>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Dimensión</th>
+              <th>Subdimensión</th>
+              <th>Reactivo</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr repeat.for="q of p.questions">
+              <td>${q.dimension.id.number} ${q.dimension.id.name}</td>
+              <td>${q.subdimension.id.number} ${q.subdimension.id.name}</td>
+              <td>${q.question.question}</td>
+              <td>${q.question.priority}</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+    </div>
+  </div>
+</template>

@@ -52,7 +52,7 @@ export class SelfAssessment {
   }
 
   processLabel(d) {
-    let score = d.maxCountingQuestions / d.maxQuestions;
+    let score = d.points / d.maxPoints;
     if(score < 0.55) {
       return 'Alto riesgo';
     } else if(score < 0.7) {
@@ -70,7 +70,7 @@ export class SelfAssessment {
       var s = dimension.subdimensionResults[k];
       data.push({
         label: s.id.name,
-        value: s.maxCountingQuestions / s.maxQuestions
+        value: s.points / s.maxPoints
       });
     }
     nv.addGraph(() => {
@@ -103,7 +103,7 @@ export class SelfAssessment {
       var dimension = evaluation.dimensionResults[k];
       data.push({
         label: dimension.id.name,
-        value: dimension.maxCountingQuestions / dimension.maxQuestions
+        value: dimension.points / dimension.maxPoints
       });
     }
     nv.addGraph(() => {
@@ -131,8 +131,8 @@ export class SelfAssessment {
   }
 
   showLevel(evaluation, averageEvaluation) {
-    let score = (evaluation.maxCountingQuestions / evaluation.maxQuestions * 100).toFixed(3);
-    let averageScore = (averageEvaluation.maxCountingQuestions / averageEvaluation.maxQuestions * 100).toFixed(3);
+    let score = (evaluation.points / evaluation.maxPoints * 100).toFixed(3);
+    let averageScore = (averageEvaluation.points / averageEvaluation.maxPoints * 100).toFixed(3);
     this.score = score;
     this.averageScore = averageScore;
     let data = {
@@ -163,7 +163,7 @@ export class SelfAssessment {
   }
 
   calcScore(d) {
-    return (d.maxCountingQuestions / d.maxQuestions).toFixed(3);
+    return (d.points / d.maxPoints).toFixed(3);
   }
 
   prepareCharts(evaluation) {
@@ -174,7 +174,7 @@ export class SelfAssessment {
 
     for(var kd in evaluation.dimensionResults) {
       var dimension = evaluation.dimensionResults[kd];
-      var score = dimension.maxCountingQuestions / dimension.maxQuestions;
+      var score = dimension.points / dimension.maxPoints;
       if(score < 0.55) {
         highRisk.push(dimension);
       } else if(score < 0.7) {
