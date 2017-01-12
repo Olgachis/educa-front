@@ -45,7 +45,7 @@ export class ImprovementPlan {
     this.results = await results.json();
     this.score = (this.results.points / this.results.maxPoints * 100).toFixed(3);
     this.questions = new Array();
-    let missingPoints = Math.ceil(this.results.maxQuestions) * 1.0 - this.results.maxCountingQuestions;
+    let missingPoints = Math.ceil(this.results.maxQuestions) * 0.95 - this.results.maxCountingQuestions;
     let yearlyPoints = Math.ceil(missingPoints / 4.0);
     for(var kd in this.evaluation.dimensions) {
       var dimension = this.evaluation.dimensions[kd];

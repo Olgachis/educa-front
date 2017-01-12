@@ -143,7 +143,7 @@ export class SelfAssessment {
       "measures":[score],
       "markers":[70, averageScore],
       "markerLabels": ['Mínimo', 'Promedio Red EDUCA'],
-      "measureLabels": ['Calificación EDUCA']
+      "measureLabels": ['Nivel de madurez EDUCA']
     };
     nv.addGraph(() => {
       let chart = nv.models.bulletChart();
