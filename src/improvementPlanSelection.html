@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="small-10 columns">
+    <div class="small-12 columns">
       <p>Seleccione los reactivos en los que busca trabajar para si siguiente periodo</p>
       <table>
         <thead>
@@ -9,7 +9,6 @@
             <th>Dimensión</th>
             <th>Subdimensión</th>
             <th>Reactivo</th>
-            <th>Puntos</th>
           </tr>
         </thead>
         <tbody>
@@ -18,23 +17,12 @@
             <td>${q.dimensionId.number} ${q.dimensionId.name}</td>
             <td>${q.subdimensionId.number} ${q.subdimensionId.name}</td>
             <td>${q.question}</td>
-            <td>${q.priority}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="small-2 columns">
       <div class="sidebar">
-        <dl>
-          <dt>Preguntas mínimas</dt>
-          <dd>${minQuestions}</dd>
-          <dt>Preguntas seleccionadas</dt>
-          <dd>${selectedQuestions}</dd>
-          <dt>Puntos seleccionados</dt>
-          <dd>${selectedPoints}</dd>
-          <dt>Puntos totales</dt>
-          <dd>${totalPoints}</dd>
-        </dl>
         <a class="button primary" click.delegate="saveData(plan)">Continuar</a>
       </div>
     </div>
