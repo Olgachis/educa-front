@@ -35,8 +35,12 @@
         <table>
           <thead>
           <tr>
-            <th>Dimensión</th>
-            <th>Descripción</th>
+            <th>
+              <center>Dimensión</center>
+            </th>
+            <th>
+              <center>Descripción</center>
+            </th>
           </tr>
           </thead>
           <tbody>
@@ -259,22 +263,38 @@
       </div>
       <div id="orientacion_plan">
         <h3>Orientación del Plan de Mejora EDUCA con base en los resultados obtenidos</h3>
-        <table>
+        <table class="unstriped">
           <thead>
           <tr>
-            <th>Dimensiones</th>
-            <th># Reactivos</th>
-            <th>Criterios cubiertos</th>
-            <th>Mínimo requerido</th>
-            <th>Puntuación Obtenida</th>
-            <th>Nivel de prioridad  Plan de Mejora</th>
-            <th>Condición Institucional</th>
+            <th>
+              <center>Dimensiones</center>
+            </th>
+            <th>
+              <center># Reactivos</center>
+            </th>
+            <th>
+              <center>Criterios cubiertos</center>
+            </th>
+            <th>
+              <center>Mínimo requerido</center>
+            </th>
+            <th>
+              <center>Puntuación Obtenida</center>
+            </th>
+            <th>
+              <center>Nivel de prioridad  Plan de Mejora</center>
+            </th>
+            <th>
+              <center>Condición Institucional</center>
+            </th>
           </tr>
           </thead>
           <tbody>
           <template repeat.for="d of dimensions">
             <tr>
-              <th>${d.id.number}. ${d.id.name}</th>
+              <td>
+                <strong>${d.id.number}. ${d.id.name}</strong>
+              </td>
               <th>${d.maxQuestions}</th>
               <th>${d.maxCountingQuestions}</th>
               <th>${round(d.minimumRequiredQuestions)} de ${d.maxQuestions}</th>
@@ -284,13 +304,25 @@
             </tr>
             <template repeat.for="s of d.subdimensions">
               <tr>
-                <td>${s.id.name}</td>
-                <td>${s.maxQuestions}</td>
-                <td>${s.maxCountingQuestions}</td>
-                <td>${round(s.minimumRequiredQuestions)} de ${s.maxQuestions}</td>
-                <td>${calcScore(s)}</td>
+                <td>
+                  ${s.id.name}
+                </td>
+                <td>
+                  <center>${s.maxQuestions}</center>
+                </td>
+                <td>
+                  <center>${s.maxCountingQuestions}</center>
+                </td>
+                <td>
+                  <center>${round(s.minimumRequiredQuestions)} de ${s.maxQuestions}</center>
+                </td>
+                <td>
+                  <center>${calcScore(s)}</center>
+                </td>
                 <td></td>
-                <td>${processLabel(s)}</td>
+                <td>
+                  <center>${processLabel(s)}</center>
+                </td>
               </tr>
             </template>
           </template>
