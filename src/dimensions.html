@@ -16,7 +16,7 @@
       <div class="small-12 columns">
         <h4>${selectedDimension.id.name}</h4>
         <form>
-          <div class="large-6 columns a-question" repeat.for="q of selectedDimension.questions">
+          <div class="large-6 columns a-question q-${selectedDimension.id.number}-${q.id}" repeat.for="q of selectedDimension.questions">
             <label>${q.question}</label>
             <div if.bind="q.options">
               <div repeat.for="o of q.options">
