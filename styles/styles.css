@@ -20,7 +20,7 @@ body {
 }
 
 .q-3\.6-113 {
-  height: 250px;
+  min-height: 250px;
 }
 
 .a-question {
