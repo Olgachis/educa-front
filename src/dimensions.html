@@ -54,8 +54,9 @@
         <p>Antes de procesar los resultados aquí plasmados, recibirán un Reporte que les informará si hay dimensiones pendientes y/o indicadores que no se respondieron, con la intención que puedan completar los datos oportunamente. </p>
         <p>Cualquier duda o comentario pueden ponerse en contacto al correo: <a href="mailto:monica5@educa.org.mx">monica5@educa.org.mx</a></p>
         <p>¡Gracias por su atención!</p>
-        <ol>
+        <ol class="dim-list">
           <li repeat.for="d of dimensions">
+            <strong>${d.id.number}.</strong>
             ${d.id.name}
             <ul>
               <li repeat.for="v of d.subdimensions">

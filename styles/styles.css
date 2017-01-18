@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+.dim-list li {
+  list-style-type: none;
+}
+
 .sidebar {
   position: fixed;
   right: 10px;
