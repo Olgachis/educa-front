@@ -242,3 +242,40 @@ div.au-stagger {
     display: none;
   }
 }
+
+@media all {
+   div.pageBreak{
+      display: none;
+   }
+}
+
+@media print{
+   div.pageBreak{
+      display:block;
+      page-break-before:always;
+   }
+}
+
+@media print {
+   * { color: black; background: white; }
+   table { font-size: 60%; }
+   table, th, td {
+     border-collapse:collapse;
+     border: 1px solid black;
+   }
+}
+
+h1, h2, h3 {
+  color: #365E9E !important;
+}
+/*
+  Pantone:
+    Consolidacion #365E9E
+    Estable #3FAE49
+    Inestable #BDA831
+    Alto riesgo #C3002F
+*/
+.nvd3.nv-bullet .nv-range0 { fill: #365E9E !important; }
+.nvd3.nv-bullet .nv-range1 { fill: #3FAE49 !important; }
+.nvd3.nv-bullet .nv-range2 { fill: #BDA831 !important; }
+.nvd3.nv-bullet .nv-range3 { fill: #C3002F !important; }
