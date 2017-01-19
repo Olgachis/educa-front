@@ -26,11 +26,9 @@ export class SelfAssessment {
   private averageEvaluation;
   private dimensions;
 
-  private highRisk;
-  private unstable;
-  private stable;
-  private consolidation;
 
+  private allCharts;
+  
   public score;
   public averageScore;
 
@@ -41,13 +39,13 @@ export class SelfAssessment {
   processColor(value) {
     let score = value.value;
     if(score < 0.55) {
-      return 'red';
+      return '#C3002F';
     } else if(score < 0.7) {
-      return 'orange';
+      return '#BDA831';
     } else if(score < 0.85) {
-      return 'green';
+      return '#3FAE49';
     } else {
-      return 'purple';
+      return '#365E9E';
     }
   }
 
@@ -77,6 +75,7 @@ export class SelfAssessment {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
+        .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .margin({bottom: 200});
 
@@ -92,10 +91,26 @@ export class SelfAssessment {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.55, '#BDA831');
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.7, '#3FAE49');
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.85, '#365E9E');
 
       return chart;
     });
   }
+
+	drawLine(graph, chart, yValue, color) {
+    var yValueScale = chart.yAxis.scale();
+    var xValueScale = chart.xAxis.scale();
+    var g = d3.select(graph + ' svg .nvd3');
+    g.append("line")
+      .style("stroke", color)
+      .style("stroke-width", "2.5px")
+      .attr("x1", 60)
+      .attr("y1", yValueScale(yValue - 0.04))
+      .attr("x2", 1000)
+      .attr("y2", yValueScale(yValue - 0.04));
+	}
 
   showDimensions(evaluation) {
     let data = new Array();
@@ -110,6 +125,7 @@ export class SelfAssessment {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
+        .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .margin({bottom: 200});
 
@@ -125,6 +141,9 @@ export class SelfAssessment {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
+      this.drawLine('#dimensionsChart', chart, 0.55, '#BDA831');
+      this.drawLine('#dimensionsChart', chart, 0.7, '#3FAE49');
+      this.drawLine('#dimensionsChart', chart, 0.85, '#365E9E');
 
       return chart;
     });
@@ -167,44 +186,18 @@ export class SelfAssessment {
   }
 
   prepareCharts(evaluation) {
-    let highRisk = new Array();
-    let unstable = new Array();
-    let stable = new Array();
-    let consolidation = new Array();
+    let allCharts = new Array();
 
     for(var kd in evaluation.dimensionResults) {
       var dimension = evaluation.dimensionResults[kd];
-      var score = dimension.points / dimension.maxPoints;
-      if(score < 0.55) {
-        highRisk.push(dimension);
-      } else if(score < 0.7) {
-        unstable.push(dimension);
-      } else if(score < 0.85) {
-        stable.push(dimension);
-      } else {
-        consolidation.push(dimension);
-      }
+      allCharts.push(dimension);
     }
 
-    this.highRisk = highRisk;
-    this.unstable = unstable;
-    this.stable = stable;
-    this.consolidation = consolidation;
-
-
+    this.allCharts = allCharts;
   }
 
   plotCharts() {
-    this.consolidation.forEach((d) => {
-      this.drawDimension(d);
-    });
-    this.stable.forEach((d) => {
-      this.drawDimension(d);
-    });
-    this.unstable.forEach((d) => {
-      this.drawDimension(d);
-    });
-    this.highRisk.forEach((d) => {
+    this.allCharts.forEach((d) => {
       this.drawDimension(d);
     });
   }
@@ -234,13 +227,43 @@ export class SelfAssessment {
     let api = new Api(this.config);
     const evaluation = await api.fetch('/api/qualityEvaluation/results');
     this.evaluation = await evaluation.json();
+    var missingPoints = this.evaluation.maxPoints - this.evaluation.points;
+    var years = 4.0;
+    var yearlyPoints = missingPoints / years;
+    var subdimensions = new Array();
     for(var kd in this.evaluation.dimensionResults) {
       var dimension = this.evaluation.dimensionResults[kd];
       dimension.subdimensions = buildArray(dimension.subdimensionResults);
       dimension.subdimensions.sort((a, b) => {
         return a.sortOrder - b.sortOrder;
       });
+      dimension.subdimensions.forEach((subdimension) => {
+        subdimensions.push(subdimension);
+      });
     }
+    subdimensions.forEach((subdimension) => {
+      var weight = 0;
+      if(subdimension.maxCountingQuestions == subdimension.maxQuestions) {
+        weight = -1;
+      } else {
+        weight = (subdimension.maxPoints - subdimension.points) / (subdimension.maxQuestions - subdimension.maxCountingQuestions);
+      }
+      subdimension.weight = weight;
+    });
+    subdimensions.sort((a, b) => {
+      return -a.weight - -b.weight;
+    });
+    var currentPoints = 0;
+    var currentPriority = 1;
+    subdimensions.forEach((subdimension) => {
+      subdimension.priority = currentPriority;
+      subdimension.missingPoints = subdimension.maxPoints - subdimension.points;
+      currentPoints += subdimension.maxPoints - subdimension.points;
+      if(currentPoints >= yearlyPoints && currentPriority < 3) {
+        currentPriority++;
+        currentPoints = 0;
+      }
+    });
     this.dimensions = buildArray(this.evaluation.dimensionResults);
     this.dimensions.sort((a, b) => {
       return a.id.sortOrder - b.id.sortOrder;

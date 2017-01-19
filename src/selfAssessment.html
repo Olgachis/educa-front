@@ -16,7 +16,7 @@
     <br/>
   </div>
   <div class="row">
-    <div class="small-6 large-12 columns">
+    <div class="large-12 columns">
       <center>
         <h1>Modelo de Gestión de <br/>Calidad Institucional</h1>
       </center>
@@ -26,7 +26,7 @@
     <br/>
   </div>
   <div class="row">
-    <div class="small-6 large-12 columns">
+    <div class="large-12 columns">
       <center>
         <h4><i>Autodiagnóstico</i></h4>
         <h4>Reporte de resultados</h4>
@@ -37,7 +37,7 @@
     <br/>
   </div>
   <div class="row">
-    <div class="small-6 large-8 large-centered columns">
+    <div class="large-8 large-centered columns">
       <center>
         <h3>${evaluation.institutionName}</h3>
       </center>
@@ -54,7 +54,6 @@
   <div class="row">
     <div class="medium-4 columns"></div>
     <div class="medium-4 columns"></div>
-    <div class="medium-4 columns">Plantel:</div>
   </div>
   <div class="pageBreak"></div>
   <div class="row">
@@ -366,7 +365,7 @@
             </div>
             <div class="large-6 columns">
               <dl>
-                <dt>Calificación EDUCA</dt>
+                <dt>Nivel de madurez EDUCA</dt>
                 <dd>${score}</dd>
                 <dt>Promedio RED EDUCA</dt>
                 <dd>${averageScore}</dd>
@@ -481,6 +480,23 @@
   </div>
   <div class="row">
     <div class="small-12 columns">
+      <div show.bind="allCharts.length">
+        <template repeat.for="d of allCharts">
+          <div class="card large-12">
+            <div class="card-divider">
+              ${d.id.number}. ${d.id.name}
+            </div>
+            <div class="chart">
+              <figure id="sub-${d.id.number}">
+                <svg style='height:600px;width:100%'></svg>
+              </figure>
+            </div>
+            <div class="card-section">
+              <p> ${d.id.number}. ${d.id.name} </p>
+            </div>
+          </div>
+        </template>
+      </div>
 
       <div id="orientacion_plan">
         <h3>Orientación del Plan de Mejora EDUCA con base en los resultados obtenidos</h3>
@@ -540,7 +556,9 @@
                 <td>
                   <center>${calcScore(s)}</center>
                 </td>
-                <td></td>
+                <td>
+                  <center>${s.priority}</center>
+                </td>
                 <td>
                   <center>${processLabel(s)}</center>
                 </td>
@@ -549,53 +567,6 @@
           </template>
           </tbody>
         </table>
-      </div>
-      <div id="resumen">
-        <h3>En resumen: </h3>
-        <div show.bind="consolidation.length">
-          <h4>Dimensiones institucionales en consolidación:</h4>
-          <template repeat.for="d of consolidation">
-            <strong>${d.id.name}</strong>
-            <div class="chart">
-              <figure id="sub-${d.id.number}">
-                <svg style='height:480px;width:100%'></svg>
-              </figure>
-            </div>
-          </template>
-        </div>
-        <div show.bind="stable.length">
-          <h4>Dimensiones institucionales estables:</h4>
-          <template repeat.for="d of stable">
-            <strong>${d.id.name}</strong>
-            <div class="chart">
-              <figure id="sub-${d.id.number}">
-                <svg style='height:480px;width:100%'></svg>
-              </figure>
-            </div>
-          </template>
-        </div>
-        <div show.bind="unstable.length">
-          <h4>Dimensiones institucionales inestables:</h4>
-          <template repeat.for="d of unstable">
-            <strong>${d.id.name}</strong>
-            <div class="chart">
-              <figure id="sub-${d.id.number}">
-                <svg style='height:480px;width:100%'></svg>
-              </figure>
-            </div>
-          </template>
-        </div>
-        <div show.bind="highRisk.length">
-          <h4>Dimensiones institucionales en alto riesgo:</h4>
-          <template repeat.for="d of highRisk">
-            <strong>${d.id.name}</strong>
-            <div class="chart">
-              <figure id="sub-${d.id.number}">
-                <svg style='height:480px;width:100%'></svg>
-              </figure>
-            </div>
-          </template>
-        </div>
       </div>
     </div>
   </div>

@@ -53,6 +53,7 @@ export class Dimensions {
   showQuestionnaire(dimension) {
     this.questionnaireEnabled = true;
     this.selectedDimension = dimension;
+    window.scrollTo(0, 0);
   }
 
   hideQuestionnaire() {
