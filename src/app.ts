@@ -44,7 +44,8 @@ export class App {
       { route: 'selfAssessment', name: 'selfAssessment', moduleId: './selfAssessment', nav: true, title: 'Autodiagnóstico', auth: true },
       { route: 'improvementPlan', name: 'improvementPlan', moduleId: './improvementPlan', nav: true, title: 'Plan de mejora', auth: true },
       { route: 'improvementPlanSelection', name: 'improvementPlanSelection', moduleId: './improvementPlanSelection', nav: true, title: 'Plan de mejora', auth: true },
-      { route: 'improvementPlanDefinition', name: 'improvementPlanDefinition', moduleId: './improvementPlanDefinition', nav: true, title: 'Plan de mejora', auth: true }
+      { route: 'improvementPlanDefinition', name: 'improvementPlanDefinition', moduleId: './improvementPlanDefinition', nav: true, title: 'Plan de mejora', auth: true },
+      { route: 'improvementPlanPrediction', name: 'improvementPlanPrediction', moduleId: './improvementPlanPrediction', nav: true, title: 'Plan de mejora', auth: true }
     ]);
 
     this.router = router;

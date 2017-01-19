@@ -1,0 +1,55 @@
+<template>
+  <div class="row">
+    <div class="small-4 large-6 columns">
+      <center>
+        <img src="../images/logo-01.jpg" width="150">
+      </center>
+    </div>
+    <div class="small-4 large-6 columns">
+      <center>
+        <img src="../images/logo-02.png" width="300">
+      </center>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <h3>${evaluation.institutionName}</h3>
+      <h4>Plan de mejora</h4>
+      <p>A continuación se muestra la predicción del nivel de madurez esperado en los siguientes periodos</p>
+      <template repeat.for="p of questions">
+        <h5>Periodo ${p.period}</h5>
+        <p>Resultados esperados al finalizar este periodo</p>
+        <dl>
+          <dt>Nivel de madurez</dt>
+          <dd>${p.score}</dd>
+        </dl>
+        <div class="chart">
+          <figure id="period-${p.period}">
+            <svg style='height:480px;width:100%'></svg>
+          </figure>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Dimensión</th>
+              <th>Subdimensión</th>
+              <th>Reactivo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr repeat.for="q of p.questions">
+              <td>${q.dimension.id.number} ${q.dimension.id.name}</td>
+              <td>${q.subdimension.id.number} ${q.subdimension.id.name}</td>
+              <td>${q.question.question}</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+      <div class="clearfix">
+        <div class="float-right">
+          <a class="button primary" href="/#/improvementPlanSelection">Continuar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

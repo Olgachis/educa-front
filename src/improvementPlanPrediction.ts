@@ -41,7 +41,7 @@ export class ImprovementPlan {
     let api = new Api(this.config);
     const evaluation = await api.fetch('/api/qualityEvaluation');
     this.evaluation = await evaluation.json();
-    const results = await api.fetch('/api/qualityEvaluation/results');
+    const results = await api.fetch('/api/qualityEvaluation/prediction');
     this.results = await results.json();
     this.score = (this.results.points / this.results.maxPoints * 100).toFixed(3);
     this.questions = new Array();
@@ -87,7 +87,7 @@ export class ImprovementPlan {
     var currentIdx = 0;
     var totalPoints = this.results.points;
     var currentCopy = this.copyResults(this.results.dimensionResults);
-    for(var i = 2; i <= 4; i++) {
+    for(var i = 1; i <= 4; i++) {
       let copy = this.copyResults(currentCopy);
       var currentPoints = 0;
       var currentQuestions = new Array();
