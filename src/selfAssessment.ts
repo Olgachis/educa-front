@@ -80,6 +80,7 @@ export class SelfAssessment {
         .margin({bottom: 200});
 
       chart.xAxis.rotateLabels(-90);
+      chart.yAxis.tickFormat(d3.format(',.3f'));
 
       d3.select(`#sub-${dimension.id.number} svg`)
         .datum([
@@ -130,6 +131,7 @@ export class SelfAssessment {
         .margin({bottom: 200});
 
       chart.xAxis.rotateLabels(-90);
+      chart.yAxis.tickFormat(d3.format(',.3f'));
 
       d3.select('#dimensionsChart svg')
         .datum([
