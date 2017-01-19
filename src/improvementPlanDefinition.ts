@@ -28,7 +28,7 @@ export class ImprovementPlanDefinition {
     const plan = await api.fetch('/api/qualityEvaluation/improvementPlan');
     this.plan = await plan.json();
     this.questions = this.plan.questions.filter((q) => {
-      return q.selected;
+      return q.selected && q.campusPriority == 1;
     });
   }
 

@@ -157,10 +157,12 @@ export class ImprovementPlan {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
+        .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .margin({bottom: 250});
 
       chart.xAxis.rotateLabels(-90);
+      chart.yAxis.tickFormat(d3.format(',.3f'));
 
       d3.select(`#period-${dimension.period} svg`)
         .datum([
@@ -172,6 +174,9 @@ export class ImprovementPlan {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
+      this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E');
 
       return chart;
     });
@@ -185,16 +190,29 @@ export class ImprovementPlan {
     this.plotPeriods();
   }
 
+	drawLine(graph, chart, yValue, color) {
+    var yValueScale = chart.yAxis.scale();
+    var xValueScale = chart.xAxis.scale();
+    var g = d3.select(graph + ' svg .nvd3');
+    g.append("line")
+      .style("stroke", color)
+      .style("stroke-width", "2.5px")
+      .attr("x1", 60)
+      .attr("y1", yValueScale(yValue))
+      .attr("x2", 1000)
+      .attr("y2", yValueScale(yValue));
+	}
+
   processColor(value) {
     let score = value.value;
     if(score < 0.55) {
-      return 'red';
+      return '#C3002F';
     } else if(score < 0.7) {
-      return 'orange';
+      return '#BDA831';
     } else if(score < 0.85) {
-      return 'green';
+      return '#3FAE49';
     } else {
-      return 'purple';
+      return '#365E9E';
     }
   }
 

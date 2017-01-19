@@ -13,6 +13,12 @@ export class ImprovementPlanSelection {
   public minQuestions;
   public plan;
 
+  public priorityOptions = [
+    1,
+    2,
+    3
+  ];
+
   constructor(config) {
     this.config = config;
   }

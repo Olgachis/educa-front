@@ -108,7 +108,7 @@ export class SelfAssessment {
       .style("stroke", color)
       .style("stroke-width", "2.5px")
       .attr("x1", 60)
-      .attr("y1", yValueScale(yValue - 0.04))
+      .attr("y1", yValueScale(yValue))
       .attr("x2", 1000)
       .attr("y2", yValueScale(yValue - 0.04));
 	}
