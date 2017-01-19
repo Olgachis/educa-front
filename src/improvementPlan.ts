@@ -87,7 +87,7 @@ export class ImprovementPlan {
     var currentIdx = 0;
     var totalPoints = this.results.points;
     var currentCopy = this.copyResults(this.results.dimensionResults);
-    for(var i = 2; i <= 4; i++) {
+    for(var i = 1; i <= 4; i++) {
       let copy = this.copyResults(currentCopy);
       var currentPoints = 0;
       var currentQuestions = new Array();
