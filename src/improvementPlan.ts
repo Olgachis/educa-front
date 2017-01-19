@@ -174,9 +174,9 @@ export class ImprovementPlan {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
-      this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831');
-      this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49');
-      this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E');
+      // this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831');
+      // this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49');
+      // this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E');
 
       return chart;
     });
