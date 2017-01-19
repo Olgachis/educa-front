@@ -92,9 +92,9 @@ export class SelfAssessment {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
-      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.55, '#BDA831');
-      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.7, '#3FAE49');
-      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.85, '#365E9E');
+      // this.drawLine(`#sub-${dimension.id.number}`, chart, 0.55, '#BDA831');
+      // this.drawLine(`#sub-${dimension.id.number}`, chart, 0.7, '#3FAE49');
+      // this.drawLine(`#sub-${dimension.id.number}`, chart, 0.85, '#365E9E');
 
       return chart;
     });
@@ -143,9 +143,9 @@ export class SelfAssessment {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
-      this.drawLine('#dimensionsChart', chart, 0.55, '#BDA831');
-      this.drawLine('#dimensionsChart', chart, 0.7, '#3FAE49');
-      this.drawLine('#dimensionsChart', chart, 0.85, '#365E9E');
+      // this.drawLine('#dimensionsChart', chart, 0.55, '#BDA831');
+      // this.drawLine('#dimensionsChart', chart, 0.7, '#3FAE49');
+      // this.drawLine('#dimensionsChart', chart, 0.85, '#365E9E');
 
       return chart;
     });
