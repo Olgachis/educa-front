@@ -122,12 +122,14 @@ export class SelfAssessment {
         value: dimension.points / dimension.maxPoints
       });
     }
+
     nv.addGraph(() => {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
+        .forceY([0,1])
         .margin({bottom: 200});
 
       chart.xAxis.rotateLabels(-90);
@@ -147,6 +149,26 @@ export class SelfAssessment {
       // this.drawLine('#dimensionsChart', chart, 0.7, '#3FAE49');
       // this.drawLine('#dimensionsChart', chart, 0.85, '#365E9E');
 
+      var g = d3.select('#dimensionsChart svg');
+
+      var yValueScale = chart.yAxis.scale();
+
+      g.append("line")
+      .style("stroke", "#3FAE49")
+      .style("stroke-width", "2.5px")
+      .attr("x1", 70 )
+      .attr("y1", yValueScale(.84))
+      .attr("x2", 700)
+      .attr("y2", yValueScale(.84));
+
+      g.append("line")
+      .style("stroke", "#BDA831")
+      .style("stroke-width", "2.5px")
+      .attr("x1", 70 )
+      .attr("y1", yValueScale(.69))
+      .attr("x2", 700)
+      .attr("y2", yValueScale(.69));
+
       return chart;
     });
   }
@@ -159,7 +181,7 @@ export class SelfAssessment {
     let data = {
       "title":"Resultado",
       "subtitle":"EDUCA",
-      "ranges":[55,70,85,100], 
+      "ranges":[55,70,85,100],
       "rangeLabels":['Alto riesgo','Inestable','Estable','En consolidación'],
       "measures":[score],
       "markers":[70, averageScore],
@@ -172,7 +194,7 @@ export class SelfAssessment {
         .datum(data)
         .transition().duration(1000)
         .call(chart);
-        
+
       nv.utils.windowResize(chart.update);
 
       return chart;
@@ -273,4 +295,3 @@ export class SelfAssessment {
   }
 
 }
-
