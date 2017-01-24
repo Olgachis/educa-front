@@ -75,7 +75,7 @@ export class SelfAssessment {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
-        .width(600)
+        .width(560)
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .forceY([0,1])
@@ -109,7 +109,7 @@ export class SelfAssessment {
 
     g.append("text")
       .attr("fill", color)
-      .attr("x", 600)
+      .attr("x", 560)
       .attr("y", scale)
       .text(text);
 
@@ -118,7 +118,7 @@ export class SelfAssessment {
       .style("stroke-width", "2.5px")
       .attr("x1", 60)
       .attr("y1", scale)
-      .attr("x2", 600)
+      .attr("x2", 560)
       .attr("y2", scale);
 	}
 
@@ -136,7 +136,7 @@ export class SelfAssessment {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
-        .width(600)
+        .width(560)
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .forceY([0,1])

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row top-logo">
     <div class="small-4 large-6 columns">
       <center>
         <a href="/#/dimensions">
@@ -17,7 +17,14 @@
     <div class="small-12 columns">
       <h3>${evaluation.institutionName}</h3>
       <h4>Plan de Mejora EDUCA</h4>
+      <p>Se entiende por Plan de Mejora EDUCA, al instrumento que la organización utiliza para establecer las acciones que ejecutará durante el ciclo escolar en curso, con el objetivo de alcanzar niveles óptimos de desempeño en la calidad de los servicios educativos y comunitarios que ofrecen.</p>
+       
+      <p>Está compuesto por la priorización de indicadores a trabajar de acuerdo a sus necesidades e intereses, así como las actividades, responsables y fechas para alcanzar sus metas.</p>
+       
+      <p>La plataforma sugiere indicadores para trabajar a partir de los resultados obtenidos en el Autodiagnóstico, mismos que considera para realizar una propuesta del Plan de Mejora; esto permite predecir el nivel de madurez institucional que la organización puede obtener en un período de 4 ciclos escolares, siempre que se trabajen los indicadores seleccionados por la institución.</p>
+
       <p>En ésta pantalla se muestra el plan de mejora sugerido, y los resultados de cada periodo en caso de seguirlo.</p>
+
       <h5>Nivel actual</h5>
       <dl>
         <dt>Nivel de madurez actual</dt>
@@ -28,10 +35,10 @@
           <svg style='height:480px;width:100%'></svg>
         </figure>
       </div>
-      <h5>Plan de mejora sugerido</h5>
+      <h5>Plan de Mejora EDUCA sugerido</h5>
       <p>A continuación se muestran los reactivos y resultados sobre los que se recomienda trabajar para los siguientes periodos</p>
       <template repeat.for="p of questions">
-        <h5>Periodo ${p.period}. Ciclo Escolar ${p.startYear}-${p.endYear}</h5>
+        <h5>Período ${p.period}. Ciclo Escolar ${p.startYear}-${p.endYear}</h5>
         <p>Resultados esperados al finalizar este periodo</p>
         <dl>
           <dt>Nivel de madurez</dt>
