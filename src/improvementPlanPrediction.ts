@@ -134,6 +134,7 @@ export class ImprovementPlan {
         questions: currentQuestions
       });
       currentCopy = this.copyResults(copy);
+      currentYear++;
     }
 
   }
