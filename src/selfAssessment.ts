@@ -76,6 +76,7 @@ export class SelfAssessment {
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
         .width(560)
+        .height(600)
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .forceY([0,1])
