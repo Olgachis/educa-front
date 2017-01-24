@@ -75,6 +75,7 @@ export class SelfAssessment {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
+        .width(600)
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .forceY([0,1])
@@ -92,26 +93,33 @@ export class SelfAssessment {
         ])
         .call(chart);
 
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.55, '#BDA831', 'Inestable');
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.7, '#3FAE49', 'Estable');
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.85, '#365E9E', 'En Consolidación');
       nv.utils.windowResize(chart.update);
-      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.55, '#BDA831');
-      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.7, '#3FAE49');
-      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.85, '#365E9E');
 
       return chart;
     });
   }
 
-	drawLine(graph, chart, yValue, color) {
+	drawLine(graph, chart, yValue, color, text) {
     var yValueScale = chart.yAxis.scale();
-    var xValueScale = chart.xAxis.scale();
     var g = d3.select(graph + ' svg .nvd3');
+    let scale = yValueScale(yValue - 0.04);
+
+    g.append("text")
+      .attr("fill", color)
+      .attr("x", 600)
+      .attr("y", scale)
+      .text(text);
+
     g.append("line")
       .style("stroke", color)
       .style("stroke-width", "2.5px")
       .attr("x1", 60)
-      .attr("y1", yValueScale(yValue))
-      .attr("x2", 1000)
-      .attr("y2", yValueScale(yValue));
+      .attr("y1", scale)
+      .attr("x2", 600)
+      .attr("y2", scale);
 	}
 
   showDimensions(evaluation) {
@@ -128,6 +136,7 @@ export class SelfAssessment {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
+        .width(600)
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .forceY([0,1])
@@ -145,10 +154,10 @@ export class SelfAssessment {
         ])
         .call(chart);
 
+      this.drawLine('#dimensionsChart', chart, 0.55, '#BDA831', 'Inestable');
+      this.drawLine('#dimensionsChart', chart, 0.7, '#3FAE49', 'Estable');
+      this.drawLine('#dimensionsChart', chart, 0.85, '#365E9E', 'En Consolidación');
       nv.utils.windowResize(chart.update);
-      this.drawLine('#dimensionsChart', chart, 0.55, '#BDA831');
-      this.drawLine('#dimensionsChart', chart, 0.7, '#3FAE49');
-      this.drawLine('#dimensionsChart', chart, 0.85, '#365E9E');
 
 
       return chart;

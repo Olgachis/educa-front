@@ -126,6 +126,7 @@ export class ImprovementPlan {
         dimensionResults: copy,
         questions: currentQuestions
       });
+      currentYear++;
       currentCopy = this.copyResults(copy);
     }
 
@@ -163,6 +164,7 @@ export class ImprovementPlan {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
+        .width(560)
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .forceY([0,1])
@@ -181,9 +183,9 @@ export class ImprovementPlan {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
-      this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831');
-      this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49');
-      this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831', 'Inestable');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49', 'Estable');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E', 'En Consolidación');
 
       return chart;
     });
@@ -197,17 +199,24 @@ export class ImprovementPlan {
     this.plotPeriods();
   }
 
-	drawLine(graph, chart, yValue, color) {
+	drawLine(graph, chart, yValue, color, text) {
     var yValueScale = chart.yAxis.scale();
-    var xValueScale = chart.xAxis.scale();
     var g = d3.select(graph + ' svg .nvd3');
+    let scale = yValueScale(yValue - 0.04);
+
+    g.append("text")
+      .attr("fill", color)
+      .attr("x", 560)
+      .attr("y", scale)
+      .text(text);
+
     g.append("line")
       .style("stroke", color)
       .style("stroke-width", "2.5px")
       .attr("x1", 60)
-      .attr("y1", yValueScale(yValue))
-      .attr("x2", 1000)
-      .attr("y2", yValueScale(yValue));
+      .attr("y1", scale)
+      .attr("x2", 560)
+      .attr("y2", scale);
 	}
 
   processColor(value) {
