@@ -126,8 +126,8 @@ export class ImprovementPlan {
         dimensionResults: copy,
         questions: currentQuestions
       });
-      currentYear++;
       currentCopy = this.copyResults(copy);
+      currentYear++;
     }
 
   }
