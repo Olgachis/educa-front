@@ -97,10 +97,10 @@ export class ImprovementPlan {
     var currentIdx = 0;
     var totalPoints = this.results.points;
     var currentCopy = this.copyResults(this.results.dimensionResults);
+    var currentYear = 2017;
     for(var i = 2; i <= 4; i++) {
       let copy = this.copyResults(currentCopy);
       var currentPoints = 0;
-      var currentYear = 2017;
       var currentQuestions = new Array();
       while(currentPoints < yearlyPoints) {
         let q = candidates[currentIdx];
