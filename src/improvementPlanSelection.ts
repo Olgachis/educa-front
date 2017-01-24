@@ -71,6 +71,7 @@ export class ImprovementPlanSelection {
     let result = await response;
     Utils.hideSpinner();
     if(result.status === 200) {
+      window.scrollTo(0, 0);
       location.href = '/#/improvementPlanDefinition';
     }
   }

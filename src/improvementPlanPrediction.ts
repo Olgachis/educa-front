@@ -19,12 +19,13 @@ function buildArray(obj) {
 @inject(AureliaConfiguration)
 export class ImprovementPlan {
 
+  public plan;
+  public plannedQuestions;
   private config;
   private evaluation;
   private results;
   private dimensions;
   private questions;
-  public missingPoints;
   public yearlyPoints;
   public score;
 
@@ -39,14 +40,18 @@ export class ImprovementPlan {
 
   async fetchData() {
     let api = new Api(this.config);
+    const plan = await api.fetch('/api/qualityEvaluation/improvementPlan');
+    this.plan = await plan.json();
+    this.plannedQuestions = this.plan.questions.filter((q) => {
+      return q.selected;
+    });
     const evaluation = await api.fetch('/api/qualityEvaluation');
     this.evaluation = await evaluation.json();
     const results = await api.fetch('/api/qualityEvaluation/prediction');
     this.results = await results.json();
     this.score = (this.results.points / this.results.maxPoints * 100).toFixed(3);
     this.questions = new Array();
-    let missingPoints = Math.ceil(this.results.maxQuestions) * 0.95 - this.results.maxCountingQuestions;
-    let yearlyPoints = Math.ceil(missingPoints / 4.0);
+    let yearlyPoints = Math.floor((this.results.maxQuestions - this.results.maxCountingQuestions) / 3.0);
     for(var kd in this.evaluation.dimensions) {
       var dimension = this.evaluation.dimensions[kd];
       dimension.subdimensions = buildArray(dimension.subdimensions);
@@ -61,6 +66,11 @@ export class ImprovementPlan {
       var dimension = this.dimensions[kd];
       for(var ks in dimension.subdimensions) {
         var subdimension = dimension.subdimensions[ks];
+        var subdimensionResults = this.results.dimensionResults[dimension.id.number].subdimensionResults[subdimension.id.number];
+        var weight = -1;
+        if(subdimensionResults.maxCountingQuestions != subdimensionResults.maxQuestions) {
+          weight = subdimensionResults.maxPoints - subdimensionResults.points;
+        }
         for(var kq in subdimension.questions) {
           var question = subdimension.questions[kq];
           question.num = ++i;
@@ -68,6 +78,7 @@ export class ImprovementPlan {
             candidates.push({
               question: question,
               dimension: dimension,
+              weight: weight,
               subdimension: subdimension
             });
           }
@@ -75,13 +86,12 @@ export class ImprovementPlan {
       }
     }
     candidates.sort((a, b) => {
-      return (-a.question.priority) - (-b.question.priority);
+      return (b.question.priority * 1000 + b.weight * 10) - (a.question.priority * 1000 + a.weight * 10);
     });
     this.dimensions.sort((a, b) => {
       return a.id.sortOrder - b.id.sortOrder;
     });
 
-    this.missingPoints = missingPoints;
     this.yearlyPoints = yearlyPoints;
 
     var currentIdx = 0;
@@ -90,6 +100,7 @@ export class ImprovementPlan {
     for(var i = 2; i <= 4; i++) {
       let copy = this.copyResults(currentCopy);
       var currentPoints = 0;
+      var currentYear = 2017;
       var currentQuestions = new Array();
       while(currentPoints < yearlyPoints) {
         let q = candidates[currentIdx];
@@ -116,6 +127,8 @@ export class ImprovementPlan {
       });
       this.questions.push({
         period: i,
+        startYear: currentYear,
+        endYear: currentYear + 1,
         score: (totalPoints / this.results.maxPoints * 100).toFixed(3),
         dimensionResults: copy,
         questions: currentQuestions
@@ -174,9 +187,9 @@ export class ImprovementPlan {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
-      // this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831');
-      // this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49');
-      // this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E');
 
       return chart;
     });
@@ -184,7 +197,9 @@ export class ImprovementPlan {
 
   attached() {
     this.drawDimension({
-      period: 0,
+      period: 1,
+      startYear: 2016,
+      endYear: 2017,
       dimensionResults: this.results.dimensionResults
     });
     this.plotPeriods();

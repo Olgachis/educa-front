@@ -28,7 +28,10 @@ export class ImprovementPlanDefinition {
     const plan = await api.fetch('/api/qualityEvaluation/improvementPlan');
     this.plan = await plan.json();
     this.questions = this.plan.questions.filter((q) => {
-      return q.selected && q.campusPriority == 1;
+      return q.selected;
+    });
+    this.questions.sort((a, b) => {
+      return a.campusPriority - b.campusPriority;
     });
   }
 
@@ -43,7 +46,8 @@ export class ImprovementPlanDefinition {
     let result = await response;
     Utils.hideSpinner();
     if(result.status === 200) {
-      Utils.showModal('Los datos han sido guardados correctamente');
+      window.scrollTo(0, 0);
+      location.href = '/#/improvementPlanPrediction';
     }
   }
 

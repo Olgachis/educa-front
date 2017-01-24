@@ -2,7 +2,9 @@
   <div class="row">
     <div class="small-4 large-6 columns">
       <center>
-        <img src="../images/logo-01.jpg" width="150">
+        <a href="/#/dimensions">
+          <img src="../images/logo-01.jpg" width="150">
+        </a>
       </center>
     </div>
     <div class="small-4 large-6 columns">
@@ -14,10 +16,11 @@
   <div class="row">
     <div class="small-12 columns">
       <h3>${evaluation.institutionName}</h3>
-      <h4>Plan de mejora</h4>
-      <p>Es importante tomar en cuenta los resultados del periodo actual</p>
+      <h4>Plan de Mejora EDUCA</h4>
+      <p>En ésta pantalla se muestra el plan de mejora sugerido, y los resultados de cada periodo en caso de seguirlo.</p>
+      <h5>Nivel actual</h5>
       <dl>
-        <dt>Nivel de madurez</dt>
+        <dt>Nivel de madurez actual</dt>
         <dd>${score}</dd>
       </dl>
       <div class="chart">
@@ -25,9 +28,10 @@
           <svg style='height:480px;width:100%'></svg>
         </figure>
       </div>
-      <p>A continuación se muestran los reactivos sobre los que se recomienda trabajar para los siguientes periodos</p>
+      <h5>Plan de mejora sugerido</h5>
+      <p>A continuación se muestran los reactivos y resultados sobre los que se recomienda trabajar para los siguientes periodos</p>
       <template repeat.for="p of questions">
-        <h5>Periodo ${p.period}</h5>
+        <h5>Periodo ${p.period}. Ciclo Escolar ${p.startYear} ${p.endYear}</h5>
         <p>Resultados esperados al finalizar este periodo</p>
         <dl>
           <dt>Nivel de madurez</dt>
@@ -57,7 +61,7 @@
       </template>
       <div class="clearfix">
         <div class="float-right">
-          <a class="button primary" href="/#/improvementPlanSelection">Continuar</a>
+          <a class="button primary" click.delegate="saveData()">Siguiente</a>
         </div>
       </div>
     </div>

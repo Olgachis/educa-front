@@ -77,6 +77,7 @@ export class SelfAssessment {
         .y((d) => { return d.value; })
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
+        .forceY([0,1])
         .margin({bottom: 200});
 
       chart.xAxis.rotateLabels(-90);
@@ -92,9 +93,9 @@ export class SelfAssessment {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
-      // this.drawLine(`#sub-${dimension.id.number}`, chart, 0.55, '#BDA831');
-      // this.drawLine(`#sub-${dimension.id.number}`, chart, 0.7, '#3FAE49');
-      // this.drawLine(`#sub-${dimension.id.number}`, chart, 0.85, '#365E9E');
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.55, '#BDA831');
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.7, '#3FAE49');
+      this.drawLine(`#sub-${dimension.id.number}`, chart, 0.85, '#365E9E');
 
       return chart;
     });
@@ -110,7 +111,7 @@ export class SelfAssessment {
       .attr("x1", 60)
       .attr("y1", yValueScale(yValue))
       .attr("x2", 1000)
-      .attr("y2", yValueScale(yValue - 0.04));
+      .attr("y2", yValueScale(yValue));
 	}
 
   showDimensions(evaluation) {
@@ -145,29 +146,10 @@ export class SelfAssessment {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
-      // this.drawLine('#dimensionsChart', chart, 0.55, '#BDA831');
-      // this.drawLine('#dimensionsChart', chart, 0.7, '#3FAE49');
-      // this.drawLine('#dimensionsChart', chart, 0.85, '#365E9E');
+      this.drawLine('#dimensionsChart', chart, 0.55, '#BDA831');
+      this.drawLine('#dimensionsChart', chart, 0.7, '#3FAE49');
+      this.drawLine('#dimensionsChart', chart, 0.85, '#365E9E');
 
-      var g = d3.select('#dimensionsChart svg');
-
-      var yValueScale = chart.yAxis.scale();
-
-      g.append("line")
-      .style("stroke", "#3FAE49")
-      .style("stroke-width", "2.5px")
-      .attr("x1", 70 )
-      .attr("y1", yValueScale(.84))
-      .attr("x2", 700)
-      .attr("y2", yValueScale(.84));
-
-      g.append("line")
-      .style("stroke", "#BDA831")
-      .style("stroke-width", "2.5px")
-      .attr("x1", 70 )
-      .attr("y1", yValueScale(.69))
-      .attr("x2", 700)
-      .attr("y2", yValueScale(.69));
 
       return chart;
     });
@@ -251,9 +233,9 @@ export class SelfAssessment {
     let api = new Api(this.config);
     const evaluation = await api.fetch('/api/qualityEvaluation/results');
     this.evaluation = await evaluation.json();
-    var missingPoints = this.evaluation.maxPoints - this.evaluation.points;
+    var missingQuestions = this.evaluation.maxQuestions - this.evaluation.maxCountingQuestions;
     var years = 4.0;
-    var yearlyPoints = missingPoints / years;
+    var yearlyQuestions = missingQuestions / years;
     var subdimensions = new Array();
     for(var kd in this.evaluation.dimensionResults) {
       var dimension = this.evaluation.dimensionResults[kd];
@@ -270,22 +252,27 @@ export class SelfAssessment {
       if(subdimension.maxCountingQuestions == subdimension.maxQuestions) {
         weight = -1;
       } else {
-        weight = (subdimension.maxPoints - subdimension.points) / (subdimension.maxQuestions - subdimension.maxCountingQuestions);
+        weight = (subdimension.maxPoints - subdimension.points);
       }
       subdimension.weight = weight;
     });
     subdimensions.sort((a, b) => {
       return -a.weight - -b.weight;
     });
-    var currentPoints = 0;
+    var currentQuestions = 0;
     var currentPriority = 1;
     subdimensions.forEach((subdimension) => {
       subdimension.priority = currentPriority;
       subdimension.missingPoints = subdimension.maxPoints - subdimension.points;
-      currentPoints += subdimension.maxPoints - subdimension.points;
-      if(currentPoints >= yearlyPoints && currentPriority < 3) {
-        currentPriority++;
-        currentPoints = 0;
+      currentQuestions += subdimension.maxQuestions - subdimension.maxCountingQuestions;
+      if(currentPriority < 3) {
+        if(currentQuestions > yearlyQuestions) {
+          subdimension.priority = subdimension.priority + 1;
+        }
+        if(currentQuestions >= yearlyQuestions) {
+          currentPriority++;
+          currentQuestions = 0;
+        }
       }
     });
     this.dimensions = buildArray(this.evaluation.dimensionResults);

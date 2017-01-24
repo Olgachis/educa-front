@@ -24,7 +24,6 @@ export class ImprovementPlan {
   private results;
   private dimensions;
   private questions;
-  public missingPoints;
   public yearlyPoints;
   public score;
 
@@ -45,8 +44,7 @@ export class ImprovementPlan {
     this.results = await results.json();
     this.score = (this.results.points / this.results.maxPoints * 100).toFixed(3);
     this.questions = new Array();
-    let missingPoints = Math.ceil(this.results.maxQuestions) * 0.95 - this.results.maxCountingQuestions;
-    let yearlyPoints = Math.ceil(missingPoints / 4.0);
+    let yearlyPoints = Math.floor((this.results.maxQuestions - this.results.maxCountingQuestions) / 4.0);
     for(var kd in this.evaluation.dimensions) {
       var dimension = this.evaluation.dimensions[kd];
       dimension.subdimensions = buildArray(dimension.subdimensions);
@@ -61,6 +59,11 @@ export class ImprovementPlan {
       var dimension = this.dimensions[kd];
       for(var ks in dimension.subdimensions) {
         var subdimension = dimension.subdimensions[ks];
+        var subdimensionResults = this.results.dimensionResults[dimension.id.number].subdimensionResults[subdimension.id.number];
+        var weight = -1;
+        if(subdimensionResults.maxCountingQuestions != subdimensionResults.maxQuestions) {
+          weight = subdimensionResults.maxPoints - subdimensionResults.points;
+        }
         for(var kq in subdimension.questions) {
           var question = subdimension.questions[kq];
           question.num = ++i;
@@ -68,6 +71,7 @@ export class ImprovementPlan {
             candidates.push({
               question: question,
               dimension: dimension,
+              weight: weight,
               subdimension: subdimension
             });
           }
@@ -75,13 +79,12 @@ export class ImprovementPlan {
       }
     }
     candidates.sort((a, b) => {
-      return (-a.question.priority) - (-b.question.priority);
+      return (b.question.priority * 1000 + b.weight * 10) - (a.question.priority * 1000 + a.weight * 10);
     });
     this.dimensions.sort((a, b) => {
       return a.id.sortOrder - b.id.sortOrder;
     });
 
-    this.missingPoints = missingPoints;
     this.yearlyPoints = yearlyPoints;
 
     var currentIdx = 0;
@@ -90,6 +93,7 @@ export class ImprovementPlan {
     for(var i = 1; i <= 4; i++) {
       let copy = this.copyResults(currentCopy);
       var currentPoints = 0;
+      var currentYear = 2016;
       var currentQuestions = new Array();
       while(currentPoints < yearlyPoints) {
         let q = candidates[currentIdx];
@@ -116,6 +120,8 @@ export class ImprovementPlan {
       });
       this.questions.push({
         period: i,
+        startYear: currentYear,
+        endYear: currentYear + 1,
         score: (totalPoints / this.results.maxPoints * 100).toFixed(3),
         dimensionResults: copy,
         questions: currentQuestions
@@ -159,6 +165,7 @@ export class ImprovementPlan {
         .y((d) => { return d.value; })
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
+        .forceY([0,1])
         .margin({bottom: 250});
 
       chart.xAxis.rotateLabels(-90);
@@ -174,9 +181,9 @@ export class ImprovementPlan {
         .call(chart);
 
       nv.utils.windowResize(chart.update);
-      // this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831');
-      // this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49');
-      // this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.55, '#BDA831');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.7, '#3FAE49');
+      this.drawLine(`#period-${dimension.period}`, chart, 0.85, '#365E9E');
 
       return chart;
     });
@@ -214,6 +221,11 @@ export class ImprovementPlan {
     } else {
       return '#365E9E';
     }
+  }
+
+  saveData() {
+    window.scrollTo(0, 0);
+    location.href = '/#/improvementPlanSelection';
   }
 
 }

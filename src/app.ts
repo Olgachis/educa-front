@@ -42,10 +42,10 @@ export class App {
       { route: 'dimensions', name: 'dimensions', moduleId: './dimensions', nav: true, title: 'Dimensiones', auth: true },
       { route: 'questions', name: 'questions', moduleId: './questions', nav: true, title: 'Preguntas', auth: true },
       { route: 'selfAssessment', name: 'selfAssessment', moduleId: './selfAssessment', nav: true, title: 'Autodiagnóstico', auth: true },
-      { route: 'improvementPlan', name: 'improvementPlan', moduleId: './improvementPlan', nav: true, title: 'Plan de mejora', auth: true },
-      { route: 'improvementPlanSelection', name: 'improvementPlanSelection', moduleId: './improvementPlanSelection', nav: true, title: 'Plan de mejora', auth: true },
-      { route: 'improvementPlanDefinition', name: 'improvementPlanDefinition', moduleId: './improvementPlanDefinition', nav: true, title: 'Plan de mejora', auth: true },
-      { route: 'improvementPlanPrediction', name: 'improvementPlanPrediction', moduleId: './improvementPlanPrediction', nav: true, title: 'Plan de mejora', auth: true }
+      { route: 'improvementPlan', name: 'improvementPlan', moduleId: './improvementPlan', nav: true, title: 'Plan de Mejora EDUCA', auth: true },
+      { route: 'improvementPlanSelection', name: 'improvementPlanSelection', moduleId: './improvementPlanSelection', nav: true, title: 'Plan de Mejora EDUCA', auth: true },
+      { route: 'improvementPlanDefinition', name: 'improvementPlanDefinition', moduleId: './improvementPlanDefinition', nav: true, title: 'Plan de Mejora EDUCA', auth: true },
+      { route: 'improvementPlanPrediction', name: 'improvementPlanPrediction', moduleId: './improvementPlanPrediction', nav: true, title: 'Plan de Mejora EDUCA', auth: true }
     ]);
 
     this.router = router;
