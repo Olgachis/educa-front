@@ -170,7 +170,7 @@ export class ImprovementPlan {
       let chart = nv.models.discreteBarChart()
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
-        .width(580)
+        .width(560)
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .margin({bottom: 250});
@@ -213,7 +213,7 @@ export class ImprovementPlan {
 
     g.append("text")
       .attr("fill", color)
-      .attr("x", 580)
+      .attr("x", 560)
       .attr("y", scale)
       .text(text);
 
@@ -222,7 +222,7 @@ export class ImprovementPlan {
       .style("stroke-width", "2.5px")
       .attr("x1", 60)
       .attr("y1", scale)
-      .attr("x2", 580)
+      .attr("x2", 560)
       .attr("y2", scale);
 	}
 
