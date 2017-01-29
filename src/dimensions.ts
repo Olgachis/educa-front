@@ -83,7 +83,9 @@ export class Dimensions {
       }
     }
     this.finished = finished;
-    console.log(this.finished);
+    if(this.me.openQuestionnaire) {
+      this.finished = false;
+    }
     this.dimensions = buildArray(this.evaluation.dimensions);
     this.dimensions.sort((a, b) => {
       return a.id.sortOrder - b.id.sortOrder;
