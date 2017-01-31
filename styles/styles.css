@@ -291,3 +291,10 @@ h1, h2, h3, h5 {
 .nvd3.nv-bullet .nv-range1 { fill: #3FAE49 !important; }
 .nvd3.nv-bullet .nv-range2 { fill: #BDA831 !important; }
 .nvd3.nv-bullet .nv-range3 { fill: #C3002F !important; }
+
+.circle {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px; 
+  /* width and height can be anything, as long as they're equal */
+}

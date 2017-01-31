@@ -11,6 +11,7 @@ export class Welcome {
   public password;
   private router;
   private config;
+  private me;
   //Getters can't be directly observed, so they must be dirty checked.
   //However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
   //To optimize by declaring the properties that this getter is computed from, uncomment the line below
@@ -31,7 +32,13 @@ export class Welcome {
     let data : any = await api.login(this.username, this.password);
     if(data.access_token) {
       localStorage.setItem('auth_token', JSON.stringify(data));
-      this.router.navigate('dimensions');
+      const me = await api.fetch('/api/me');
+      this.me = await me.json();
+      if(this.me.role == 'admin') {
+        this.router.navigate('admin');
+      } else {
+        this.router.navigate('dimensions');
+      }
     } else {
       //Handle error
       Utils.showModal('Nombre de usuario y/o password incorrectos, favor de verificar');

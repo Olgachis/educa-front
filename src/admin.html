@@ -1,0 +1,55 @@
+<template>
+  <div class="row top-logo">
+    <div class="small-4 large-6 columns">
+      <center>
+        <a href="/#/dimensions">
+          <img src="../images/logo-01.jpg" width="150">
+        </a>
+      </center>
+    </div>
+    <div class="small-4 large-6 columns">
+      <center>
+        <img src="../images/logo-02.png" width="300">
+      </center>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Institución</th>
+            <th>Autoevaluación</th>
+            <th>Nivel de madurez</th>
+            <th>Preguntas faltantes</th>
+            <th>Etapa</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="i of summary">
+            <td show.bind="i.completed">
+              <div class="circle" style="background-color: ${i.color}"></div>
+            </td>
+            <td show.bind="!i.completed"></td>
+            <td>${i.institutionName}</td>
+            <td show.bind="i.completed">${i.score}</td>
+            <td show.bind="!i.completed"></td>
+            <td show.bind="i.completed">${i.level}</td>
+            <td show.bind="!i.completed"></td>
+            <td>${i.missingQuestions}</td>
+            <td show.bind="i.completed">Plan de mejora</td>
+            <td show.bind="!i.completed">Autodiagnóstico</td>
+            <td show.bind="i.completed">
+              <a class="secondary button tiny" click.delegate="openSelfAssessment(i)">Abrir autodiagnóstico</a>
+            </td>
+            <td show.bind="!i.completed">
+              <a show.bind="i.canComplete" class="alert button tiny" click.delegate="closeSelfAssessment(i)">Cerrar autodiagnóstico</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
