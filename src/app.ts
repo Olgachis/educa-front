@@ -39,6 +39,7 @@ export class App {
 
     config.map([
       { route: ['', 'welcome'], name: 'welcome',    moduleId: './welcome',    nav: true, title: 'Modelo de gestión de calidad institucional EDUCA', class: 'welcome' },
+      { route: 'finance', name: 'finance', moduleId: './finance', nav: true, title: 'Finanzas personales', auth: true },
       { route: 'dimensions', name: 'dimensions', moduleId: './dimensions', nav: true, title: 'Dimensiones', auth: true },
       { route: 'admin', name: 'admin', moduleId: './admin', nav: false, title: 'Administración', auth: true },
       { route: 'questions', name: 'questions', moduleId: './questions', nav: true, title: 'Preguntas', auth: true },

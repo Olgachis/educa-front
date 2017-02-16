@@ -39,6 +39,10 @@ body {
   height: 120px;
 }
 
+.b-question {
+  min-height: 160px;
+}
+
 .welcome {
   background: url(/images/pencils.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;

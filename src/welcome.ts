@@ -36,6 +36,8 @@ export class Welcome {
       this.me = await me.json();
       if(this.me.role == 'admin') {
         this.router.navigate('admin');
+      } else if(this.me.role == 'finance') {
+        this.router.navigate('finance');
       } else {
         this.router.navigate('dimensions');
       }
