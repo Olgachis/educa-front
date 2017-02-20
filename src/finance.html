@@ -17,7 +17,7 @@
     <h4>${selectedQuestionnaire.name}</h4>
     <p>${selectedQuestionnaire.questionnaire.text}</p>
     <form>
-      <div class="large-6 columns b-question q-${q.id}" repeat.for="q of selectedQuestionnaire.questionnaire.questions">
+      <div class="large-12 columns b-question q-${q.id}" repeat.for="q of selectedQuestionnaire.questionnaire.questions">
         <label>${q.displayName}</label>
         <div if.bind="q.type == 'text'">
           <input type="text" name="${q.id}" value.bind="q.value" id="q.id">
