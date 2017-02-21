@@ -44,7 +44,7 @@ body {
 }
 
 .welcome {
-  background: url(/images/pencils.jpg) no-repeat center center fixed; 
+  background: url(/images/pencils.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -260,13 +260,14 @@ div.au-stagger {
 }
 
 @media all {
-   div.pageBreak{
+   div.page-break{
       display: none;
+
    }
 }
 
 @media print{
-   div.pageBreak{
+   div.page-break{
       display:block;
       page-break-before:always;
    }
@@ -274,8 +275,29 @@ div.au-stagger {
 
 @media print {
    * { color: black; background: white; }
-   table { font-size: 60%; }
+   table { font-size: 50%; }
    table, th, td {
+     border-collapse:collapse;
+     border: 1px solid black;
+   }
+}
+
+@media print{
+  a[href]:after {
+    content: none !important;
+  }
+}
+
+@media all {
+   .comment{
+      display: none;
+   }
+}
+
+@media print{
+   .comment{
+     color: red;
+     display: table-cell;
      border-collapse:collapse;
      border: 1px solid black;
    }
@@ -299,6 +321,6 @@ h1, h2, h3, h5 {
 .circle {
   border-radius: 50%;
   width: 50px;
-  height: 50px; 
+  height: 50px;
   /* width and height can be anything, as long as they're equal */
 }

@@ -57,5 +57,5 @@ export class App {
     console.log('Hide modal');
     w.$modal.close();
   }
-  
+
 }
