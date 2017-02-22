@@ -19,9 +19,9 @@
       <table>
         <thead>
           <tr>
-            <th>Dimensión</th>
-            <th>Subdimensión</th>
-            <th colspan="3">Reactivo</th>
+            <th width="20%">Dimensión</th>
+            <th width="20%">Subdimensión</th>
+            <th width="60%" colspan="3">Reactivo</th>
           </tr>
         </thead>
         <tbody>
@@ -29,23 +29,28 @@
             <tr>
               <td>${q.dimensionId.number} ${q.dimensionId.name}</td>
               <td>${q.subdimensionId.number} ${q.subdimensionId.name}</td>
-              <td colaspan="3">${q.question}</td>
+              <td colspan="3">${q.question}</td>
             </tr>
             <tr>
-              <td>
-                <textarea placeholder="Acción" value.bind="q.action"></textarea>
+              <td width="20%">
+                <textarea rows="5" placeholder="Acción" value.bind="q.action"></textarea>
+                <p class="textarea-print">${q.action}</p>
               </td>
-              <td>
-                <textarea placeholder="Meta" value.bind="q.goal"></textarea>
+              <td width="20%">
+                <textarea rows="5" placeholder="Meta" value.bind="q.goal"></textarea>
+                <p class="textarea-print">${q.goal}</p>
               </td>
-              <td>
-                <textarea placeholder="Responsable" value.bind="q.responsible"></textarea>
+              <td width="20%">
+                <textarea rows="5" placeholder="Responsable" value.bind="q.responsible"></textarea>
+                <p class="textarea-print">${q.responsible}</p>
               </td>
-              <td>
-                <textarea placeholder="Evidencia" value.bind="q.evidence"></textarea>
+              <td width="20%">
+                <textarea rows="5" placeholder="Evidencia" value.bind="q.evidence"></textarea>
+                <p class="textarea-print">${q.evidence}</p>
               </td>
-              <td>
-                <textarea placeholder="Recursos" value.bind="q.resources"></textarea>
+              <td width="20%">
+                <textarea rows="5" placeholder="Recursos" value.bind="q.resources"></textarea>
+                <p class="textarea-print">${q.resources}</p>
               </td>
             </tr>
           </template>

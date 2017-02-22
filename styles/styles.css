@@ -289,19 +289,35 @@ div.au-stagger {
 }
 
 @media all {
-   .comment{
+   .comment, .textarea-print{
       display: none;
    }
+
 }
 
 @media print{
    .comment{
-     color: red;
      display: table-cell;
      border-collapse:collapse;
      border: 1px solid black;
    }
 }
+
+@media print{
+   .textarea-print{
+     display: block;
+     color: red;
+   }
+
+}
+
+@media print{
+    textarea, .button{
+      display: none !important;
+    }
+
+}
+
 
 h1, h2, h3, h5 {
   color: #365E9E !important;

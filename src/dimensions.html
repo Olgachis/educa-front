@@ -18,7 +18,7 @@
       <div class="small-12 columns">
         <h4>Modelo de Gestión de Calidad Institucional EDUCA</h4>
         <p>La institución ha completado su cuestionario, para revisar los resultados de su Autodiagnóstico Institucional EDUCA, por favor entre a la siguiente liga: <a href="/#/selfAssessment">AUTODIAGNÓSTICO</a></p>
-        <p>Una vez que hayan revisado su Autodiagnóstico, les invitamos a ingresar al Plan de Mejora EDUCA, donde podrán seleccionar  las acciones a implementar en su institución, de acuerdo a sus necesidades e intereses. 
+        <p>Una vez que hayan revisado su Autodiagnóstico, les invitamos a ingresar al Plan de Mejora EDUCA, donde podrán seleccionar  las acciones a implementar en su institución, de acuerdo a sus necesidades e intereses.
         </p>
         <p>Por favor entre a la siguiente liga: <a href="/#/improvementPlan">PLAN DE MEJORA</a></p>
       </div>
@@ -44,6 +44,7 @@
           <div class="large-12 columns">
             <p>Información adicional, en caso que su Institución tenga un nuevo programa educativo por favor comentelo aquí.</p>
             <textarea placeholder="Comentarios" value.bind="selectedDimension.comment"></textarea>
+            <p class="textarea-print">${selectedDimension.comment}</p>
           </div>
           <div class="large-6 columns">
             Has contestado ${answeredQuestions} de ${totalProperties} preguntas
