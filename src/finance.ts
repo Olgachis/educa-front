@@ -4,6 +4,8 @@ import {HttpClient, json} from 'aurelia-fetch-client';
 import {Api} from './api';
 import {Utils} from './utils';
 
+import * as _ from 'lodash';
+
 @inject(AureliaConfiguration)
 export class Finance {
   private config;
@@ -13,10 +15,13 @@ export class Finance {
   private responses;
   private selectedQuestionnaire;
   private questionnaireEnabled;
+  private questionMap;
+
 
   constructor(config) {
     this.config = config;
     this.api = new Api(this.config);
+
   }
 
   async activate(): Promise<void> {
@@ -26,15 +31,36 @@ export class Finance {
   }
 
   async showQuestionnaireList(questionnaire) {
+
     this.listEnabled = true;
     this.questionnaireEnabled = false;
     this.selectedQuestionnaire = questionnaire;
+
+    let modifyQuestions: any[] = [
+      {id: 'whatsANeed', "options": ["Cosas que quiero, pero puedo esperar para comprarlas.","Algo sin lo que la vida sería muy difícil.","No lo sé."]},
+      {id: 'iSaveOtherMoney', "options": [{ "name": "Otra, ¿cuál?", "other": true}]},
+      {id: 'whenCreateBudget', "options": ["Siempre","De manera frecuente","Muy poco","No elaboro un presupuesto","No me parece necesario"]}
+    ];
+    _.each(this.selectedQuestionnaire.questionnaire.questions, function (el) {
+      let nuevasOpciones = _.find(modifyQuestions, function(o) { return o.id == el['id'] ; });
+      if(nuevasOpciones){
+        el['options'] = nuevasOpciones.options;
+      }
+      if(el['id']=='iSaveOtherMoney'){
+        el['type'] = 'options';
+      }
+    if(el['id'] == 'savingInstitutions'){
+        el['displayName'] = "¿Cuáles de las siguientes opciones son ejemplos de una institución financiera?";
+      }
+    });
+
     console.log(questionnaire);
     const responses = await this.api.fetch('/api/simpleQuestionnaire/' + questionnaire.id + '/responses');
     this.responses = await responses.json();
   }
 
   showQuestionnaire(questionnaire) {
+
     this.listEnabled = false;
     this.questionnaireEnabled = true;
     questionnaire.questionnaire.questions.forEach((question) => {
@@ -51,6 +77,7 @@ export class Finance {
       }
     });
     this.selectedQuestionnaire = questionnaire;
+
     window.scrollTo(0, 0);
   }
 
@@ -68,6 +95,9 @@ export class Finance {
     this.selectedQuestionnaire = this.questionnaires.questionnaires.filter((q) => {
       return currentQuestionnaire == q.id;
     })[0];
+
+
+
     this.showQuestionnaireList(this.selectedQuestionnaire);
     Utils.hideSpinner();
   }
@@ -79,7 +109,31 @@ export class Finance {
     const fullQuestionnaire = await questionnaire.json();
     this.selectedQuestionnaire.responseId = res.id;
     this.selectedQuestionnaire.questionnaire = fullQuestionnaire.data;
-    console.log(this.selectedQuestionnaire);
+
+    let modifyQuestions: any[] = [
+      {id: 'whatsANeed', "options": ["Cosas que quiero, pero puedo esperar para comprarlas.","Algo sin lo que la vida sería muy difícil.","No lo sé."]},
+      {id: 'iSaveOtherMoney', "options": ["Otra, ¿cuál?"]},
+      {id: 'whenCreateBudget', "options": ["Siempre","De manera frecuente","Muy poco","No elaboro un presupuesto","No me parece necesario"]}
+    ];
+    _.each(this.selectedQuestionnaire.questionnaire.questions, function (el) {
+      let nuevasOpciones = _.find(modifyQuestions, function(o) { return o.id == el['id'] ; });
+
+      if(nuevasOpciones){
+
+        let i = 0;
+        _.each(el.options, function (opt) {
+
+          opt.name = nuevasOpciones.options[i];
+          i++;
+        });
+      }
+      if(el['id'] == 'iSaveOtherMoney'){
+        el['type'] = 'options';
+      }
+      if(el['id'] == 'savingInstitutions'){
+        el['displayName'] = "¿Cuáles de las siguientes opciones son ejemplos de una institución financiera?";
+      }
+    });
   }
 
   hideQuestionnaireList() {
@@ -95,5 +149,5 @@ export class Finance {
     window.scrollTo(0, 0);
   }
 
-}
 
+}
