@@ -16,6 +16,7 @@ export class Finance {
   private selectedQuestionnaire;
   private questionnaireEnabled;
   private questionMap;
+  private selectedQuestionnaireId;
 
 
   constructor(config) {
@@ -36,21 +37,41 @@ export class Finance {
     this.questionnaireEnabled = false;
     this.selectedQuestionnaire = questionnaire;
 
-    let modifyQuestions: any[] = [
+    let selectedQuestionnaireId = this.selectedQuestionnaire.id;
+
+    let modifyQuestionsSecondary: any[] = [
       {id: 'whatsANeed', "options": ["Cosas que quiero, pero puedo esperar para comprarlas.","Algo sin lo que la vida sería muy difícil.","No lo sé."]},
-      {id: 'iSaveOtherMoney', "options": [{ "name": "Otra, ¿cuál?", "other": true}]},
+      {id: 'iSaveOtherMoney', "options": ["Otra, ¿cuál?"]},
       {id: 'whenCreateBudget', "options": ["Siempre","De manera frecuente","Muy poco","No elaboro un presupuesto","No me parece necesario"]}
     ];
+
+    let modifyQuestionsSixt: any[] = [
+      {id: 'howManyTimes', "options":["Siempre","Algunas veces","Pocas veces","Nunca","No tengo meta de ahorro"]}
+    ];
     _.each(this.selectedQuestionnaire.questionnaire.questions, function (el) {
-      let nuevasOpciones = _.find(modifyQuestions, function(o) { return o.id == el['id'] ; });
-      if(nuevasOpciones){
-        el['options'] = nuevasOpciones.options;
-      }
-      if(el['id']=='iSaveOtherMoney'){
-        el['type'] = 'options';
-      }
-    if(el['id'] == 'savingInstitutions'){
-        el['displayName'] = "¿Cuáles de las siguientes opciones son ejemplos de una institución financiera?";
+      if(selectedQuestionnaireId == 'secondary-students'){
+        let nuevasOpciones = _.find(modifyQuestionsSecondary, function(o) { return o.id == el['id'] ; });
+        if(nuevasOpciones){
+          el['options'] = nuevasOpciones.options;
+        }
+        if(el['id'] == 'iSaveOtherMoney'){
+          el['type'] = 'options';
+        }
+        if(el['id'] == 'savingInstitutions'){
+          el['displayName'] = "¿Cuáles de las siguientes opciones son ejemplos de una institución financiera?";
+        }
+      }else if(selectedQuestionnaireId == 'sixth'){
+
+        let nuevasOpciones = _.find(modifyQuestionsSixt, function(o) { return o.id == el['id'] ; });
+        if(nuevasOpciones){
+          el['options'] = nuevasOpciones.options;
+        }
+        if(el['id'] == 'whereSaveMoney'){
+          el['type'] = 'multioptions';
+        }
+        if(el['id'] == 'wantToLearn'){
+          el['type'] = 'multioptions';
+        }
       }
     });
 
@@ -110,28 +131,49 @@ export class Finance {
     this.selectedQuestionnaire.responseId = res.id;
     this.selectedQuestionnaire.questionnaire = fullQuestionnaire.data;
 
-    let modifyQuestions: any[] = [
+    let selectedQuestionnaireId = this.selectedQuestionnaire.id;
+
+    let modifyQuestionsSecondary: any[] = [
       {id: 'whatsANeed', "options": ["Cosas que quiero, pero puedo esperar para comprarlas.","Algo sin lo que la vida sería muy difícil.","No lo sé."]},
       {id: 'iSaveOtherMoney', "options": ["Otra, ¿cuál?"]},
       {id: 'whenCreateBudget', "options": ["Siempre","De manera frecuente","Muy poco","No elaboro un presupuesto","No me parece necesario"]}
     ];
+
+    let modifyQuestionsSixt: any[] = [
+      {id: 'howManyTimes', "options":["Siempre","Algunas veces","Una vez","Nunca","No tengo meta de ahorro"]}
+    ];
     _.each(this.selectedQuestionnaire.questionnaire.questions, function (el) {
-      let nuevasOpciones = _.find(modifyQuestions, function(o) { return o.id == el['id'] ; });
-
-      if(nuevasOpciones){
-
-        let i = 0;
-        _.each(el.options, function (opt) {
-
-          opt.name = nuevasOpciones.options[i];
-          i++;
-        });
-      }
-      if(el['id'] == 'iSaveOtherMoney'){
-        el['type'] = 'options';
-      }
-      if(el['id'] == 'savingInstitutions'){
-        el['displayName'] = "¿Cuáles de las siguientes opciones son ejemplos de una institución financiera?";
+      if(selectedQuestionnaireId == 'secondary-students'){
+        let nuevasOpciones = _.find(modifyQuestionsSecondary, function(o) { return o.id == el['id'] ; });
+        if(nuevasOpciones){
+          let i = 0;
+          _.each(el.options, function (opt) {
+            opt.name = nuevasOpciones.options[i];
+            i++;
+          });
+        }
+        if(el['id'] == 'iSaveOtherMoney'){
+          el['type'] = 'options';
+        }
+        if(el['id'] == 'savingInstitutions'){
+          el['displayName'] = "¿Cuáles de las siguientes opciones son ejemplos de una institución financiera?";
+        }
+      }else if(selectedQuestionnaireId == 'sixth'){
+        
+        let nuevasOpciones = _.find(modifyQuestionsSecondary, function(o) { return o.id == el['id'] ; });
+        if(nuevasOpciones){
+          let i = 0;
+          _.each(el.options, function (opt) {
+            opt.name = nuevasOpciones.options[i];
+            i++;
+          });
+        }
+        if(el['id'] == 'whereSaveMoney'){
+          el['type'] = 'multioptions';
+        }
+        if(el['id'] == 'wantToLearn'){
+          el['type'] = 'multioptions';
+        }
       }
     });
   }
