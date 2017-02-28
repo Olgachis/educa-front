@@ -90,6 +90,7 @@ export class Dimensions {
     this.dimensions.sort((a, b) => {
       return a.id.sortOrder - b.id.sortOrder;
     });
+
   }
 
   async saveQuestionnaire() {
