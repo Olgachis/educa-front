@@ -14,6 +14,13 @@
     </div>
   </div>
   <div class="row">
+    <div class="small-10 columns">
+    </div>
+    <div class="small-2 columns">
+      <input class="comment pull-right button primary" type='button' onclick='window.print();' value='Imprimir' /></form>
+    </div>
+  </div>
+  <div class="row">
     <div class="small-12 columns">
       <h3>${evaluation.institutionName}</h3>
 
@@ -57,7 +64,7 @@
               <th>Dimensión</th>
               <th>Subdimensión</th>
               <th>Reactivo</th>
-              <th class="comment">Comentatios</th>
+              <th >Comentatios</th>
             </tr>
           </thead>
           <tbody>
@@ -65,7 +72,7 @@
               <td>${q.dimension.id.number} ${q.dimension.id.name}</td>
               <td>${q.subdimension.id.number} ${q.subdimension.id.name}</td>
               <td>${q.question.question}</td>
-              <td class="comment"><p>${q.subdimension.comment}</p></td>
+              <td><p>${q.subdimension.comment}</p></td>
             </tr>
           </tbody>
         </table>
