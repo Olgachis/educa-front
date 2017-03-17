@@ -14,46 +14,56 @@
     </div>
   </div>
   <div class="row">
+    <div class="small-8 columns">
+    </div>
+    <div class="small-2 columns">
+      <a class="button secondary" href="/#/glossary">Glosario</a>
+      <input class="comment pull-right button primary" type='button' onclick='window.print();' value='Imprimir' /></form>
+    </div>
+  </div>
+  <div class="row">
+
     <div class="small-12 columns">
-      <p>Por favor escriba en los recuadros la información solicitada, en esta sección aparecen sólo los indicadores que ustedes eligieron para trabajar en este ciclo escolar.</p>
+      <p>Por favor escriba en los recuadros la información solicitada, en esta sección aparecen sólo los indicadores que
+        ustedes eligieron para trabajar en este ciclo escolar.</p>
       <table>
         <thead>
-          <tr>
-            <th width="20%">Dimensión</th>
-            <th width="20%">Subdimensión</th>
-            <th width="60%" colspan="3">Reactivo</th>
-          </tr>
+        <tr>
+          <th width="20%">Dimensión</th>
+          <th width="20%">Subdimensión</th>
+          <th width="60%" colspan="3">Reactivo</th>
+        </tr>
         </thead>
         <tbody>
-          <template repeat.for="q of questions">
-            <tr>
-              <td>${q.dimensionId.number} ${q.dimensionId.name}</td>
-              <td>${q.subdimensionId.number} ${q.subdimensionId.name}</td>
-              <td colspan="3">${q.question}</td>
-            </tr>
-            <tr>
-              <td width="20%">
-                <textarea rows="5" placeholder="Acción" value.bind="q.action"></textarea>
-                <p class="textarea-print">${q.action}</p>
-              </td>
-              <td width="20%">
-                <textarea rows="5" placeholder="Meta" value.bind="q.goal"></textarea>
-                <p class="textarea-print">${q.goal}</p>
-              </td>
-              <td width="20%">
-                <textarea rows="5" placeholder="Responsable" value.bind="q.responsible"></textarea>
-                <p class="textarea-print">${q.responsible}</p>
-              </td>
-              <td width="20%">
-                <textarea rows="5" placeholder="Evidencia" value.bind="q.evidence"></textarea>
-                <p class="textarea-print">${q.evidence}</p>
-              </td>
-              <td width="20%">
-                <textarea rows="5" placeholder="Recursos" value.bind="q.resources"></textarea>
-                <p class="textarea-print">${q.resources}</p>
-              </td>
-            </tr>
-          </template>
+        <template repeat.for="q of questions">
+          <tr>
+            <td>${q.dimensionId.number} ${q.dimensionId.name}</td>
+            <td>${q.subdimensionId.number} ${q.subdimensionId.name}</td>
+            <td colspan="3">${q.question}</td>
+          </tr>
+          <tr>
+            <td width="20%">
+              <textarea rows="5" placeholder="Acción" value.bind="q.action"></textarea>
+              <p class="textarea-print">${q.action}</p>
+            </td>
+            <td width="20%">
+              <textarea rows="5" placeholder="Meta" value.bind="q.goal"></textarea>
+              <p class="textarea-print">${q.goal}</p>
+            </td>
+            <td width="20%">
+              <textarea rows="5" placeholder="Responsable" value.bind="q.responsible"></textarea>
+              <p class="textarea-print">${q.responsible}</p>
+            </td>
+            <td width="20%">
+              <textarea rows="5" placeholder="Evidencia" value.bind="q.evidence"></textarea>
+              <p class="textarea-print">${q.evidence}</p>
+            </td>
+            <td width="20%">
+              <textarea rows="5" placeholder="Recursos" value.bind="q.resources"></textarea>
+              <p class="textarea-print">${q.resources}</p>
+            </td>
+          </tr>
+        </template>
         </tbody>
       </table>
       <div class="float-right">

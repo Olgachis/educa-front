@@ -47,7 +47,8 @@ export class App {
       { route: 'improvementPlan', name: 'improvementPlan', moduleId: './improvementPlan', nav: true, title: 'Plan de Mejora EDUCA', auth: true },
       { route: 'improvementPlanSelection', name: 'improvementPlanSelection', moduleId: './improvementPlanSelection', nav: true, title: 'Plan de Mejora EDUCA', auth: true },
       { route: 'improvementPlanDefinition', name: 'improvementPlanDefinition', moduleId: './improvementPlanDefinition', nav: true, title: 'Plan de Mejora EDUCA', auth: true },
-      { route: 'improvementPlanPrediction', name: 'improvementPlanPrediction', moduleId: './improvementPlanPrediction', nav: true, title: 'Plan de Mejora EDUCA', auth: true }
+      { route: 'improvementPlanPrediction', name: 'improvementPlanPrediction', moduleId: './improvementPlanPrediction', nav: true, title: 'Plan de Mejora EDUCA', auth: true },
+      { route: 'glossary', name: 'glossary', moduleId: './glossary', nav: true, title: 'Glosario', auth: true }
     ]);
 
     this.router = router;
