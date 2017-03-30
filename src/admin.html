@@ -18,29 +18,63 @@
       <table>
         <thead>
           <tr>
-            <th></th>
             <th>Institución</th>
+            <th></th>
             <th>Autoevaluación</th>
-            <th>Nivel de madurez</th>
-            <th>Preguntas faltantes</th>
-            <th>Etapa</th>
+            <th>Informacioón</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr repeat.for="i of summary">
+            <td class="small-3">
+              <div>${i.institutionName} ${i.institutionLevel}</div>
+            </td>
             <td show.bind="i.completed">
-              <div class="circle" style="background-color: ${i.color}"></div>
+              <table  show.bind="i.completed">
+                <tr>
+                  <td repeat.for="d of i.dimensions">
+                    <span class="texto-vertical-2"><font size="1">${d.name}</font></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td repeat.for="d of i.dimensions">
+                    <dl>
+                      <dd show.bind="d.score > 0 && d.score <= 55" class="dimensionSquare newTooltip" style="background-color: #C3002F">
+                        <span class="tooltiptext">${d.score}</span>
+                      </dd>
+                      <dd show.bind="d.score >= 55 && d.score <= 70" class="dimensionSquare newTooltip" style="background-color: #BDA831">
+                        <span class="tooltiptext">${d.score}</span>
+                      </dd>
+                      <dd show.bind="d.score >= 70 && d.score <= 85" class="dimensionSquare newTooltip" style="background-color: #3FAE49">
+                        <span class="tooltiptext">${d.score}</span>
+                      </dd>
+                      <dd show.bind="d.score >= 85" class="dimensionSquare newTooltip" style="background-color: #365E9E">
+                        <span class="tooltiptext">${d.score}</span>
+                      </dd>
+                    </dl>
+                  </td>
+                </tr>
+              </table>
             </td>
             <td show.bind="!i.completed"></td>
-            <td>${i.institutionName} ${i.institutionLevel}</td>
-            <td show.bind="i.completed">${i.score}</td>
+            <td show.bind="i.completed">
+              <center>
+                <dt class="circle" style="background-color: ${i.color}"></dt>
+                <dd>${i.level}</dd>
+                <dd>${i.score}</dd>
+              </center>
+            </td>
             <td show.bind="!i.completed"></td>
-            <td show.bind="i.completed">${i.level}</td>
-            <td show.bind="!i.completed"></td>
-            <td>${i.missingQuestions}</td>
-            <td show.bind="i.completed">Plan de mejora</td>
-            <td show.bind="!i.completed">Autodiagnóstico</td>
+            <td>
+              <small>
+                <dt>Preguntas faltantes</dt>
+                <dd>${i.missingQuestions}</dd>
+                <dt>Etapa:</dt>
+                <dd show.bind="i.completed">Plan de mejora</dd>
+                <dd show.bind="!i.completed">Autodiagnóstico</dd>
+              </small>
+            </td>
             <td show.bind="i.completed">
               <a class="secondary button tiny" click.delegate="openSelfAssessment(i)">Abrir autodiagnóstico</a>
             </td>

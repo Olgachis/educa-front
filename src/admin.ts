@@ -3,6 +3,7 @@ import {inject} from 'aurelia-framework';
 import {Api} from './api';
 import {Utils} from './utils';
 import {AureliaConfiguration} from 'aurelia-configuration';
+import * as _ from 'lodash';
 
 @inject(AureliaConfiguration)
 export class Admin {
@@ -46,17 +47,33 @@ export class Admin {
     this.api = new Api(this.config);
     Utils.showSpinner();
     const summary = await this.api.fetch('/api/summary/list');
+
     this.summary = (await summary.json()).map(r => {
+      let dimensions = _.map(r.dimensionResults, function (el) {
+        return {
+          id: el['id'].number,
+          name: el['id'].name,
+          maxPoints: el['maxPoints'],
+          maxQuestions: el['maxPoints'],
+          minimumRequiredQuestions: el['maxPoints'],
+          points: el['points'],
+          score: (el['points'] / el['maxPoints'] * 100).toFixed(1)
+        };
+      });
+
       r.canComplete = r.questions == r.maxQuestions;
       r.completed = (r.questions == r.maxQuestions) && !r.openQuestionnaire;
       r.score = (r.points / r.maxPoints * 100).toFixed(3);
       r.level = this.processLabel(r);
       r.missingQuestions = r.maxQuestions - r.questions;
       r.color = this.processColor(r);
+      r.dimensions = dimensions;
+
       return r;
     });
     Utils.hideSpinner();
   }
+
 
   async openSelfAssessment(i) {
     Utils.showSpinner();
@@ -73,5 +90,3 @@ export class Admin {
   }
 
 }
-
-

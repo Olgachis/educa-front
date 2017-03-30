@@ -340,3 +340,54 @@ h1, h2, h3, h5 {
   height: 50px;
   /* width and height can be anything, as long as they're equal */
 }
+
+.dimensionSquare {
+  border-radius: 10%;
+  width: 15px;
+  height: 15px;
+  /* width and height can be anything, as long as they're equal */
+}
+
+.newTooltip {
+    position: relative;
+    border-bottom: 0px dotted black;
+}
+
+.newTooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.newTooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.newTooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.texto-vertical-2 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    line-height:11px;
+}
