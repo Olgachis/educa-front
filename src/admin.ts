@@ -42,6 +42,19 @@ export class Admin {
     }
   }
 
+  transformCoso(el ){
+    console.log(el.id.number);
+    return {
+      id: el['id'].number,
+      name: el['id'].name,
+      maxPoints: el['maxPoints'],
+      maxQuestions: el['maxPoints'],
+      minimumRequiredQuestions: el['maxPoints'],
+      points: el['points'],
+      score: (el['points'] / el['maxPoints'] * 100).toFixed(1)
+    };
+  }
+
   async activate(): Promise<void> {
     await fetch;
     this.api = new Api(this.config);
@@ -49,17 +62,7 @@ export class Admin {
     const summary = await this.api.fetch('/api/summary/list');
 
     this.summary = (await summary.json()).map(r => {
-      let dimensions = _.map(r.dimensionResults, function (el) {
-        return {
-          id: el['id'].number,
-          name: el['id'].name,
-          maxPoints: el['maxPoints'],
-          maxQuestions: el['maxPoints'],
-          minimumRequiredQuestions: el['maxPoints'],
-          points: el['points'],
-          score: (el['points'] / el['maxPoints'] * 100).toFixed(1)
-        };
-      });
+      let dimensions = _.map(r.dimensionResults,this.transformCoso);
 
       r.canComplete = r.questions == r.maxQuestions;
       r.completed = (r.questions == r.maxQuestions) && !r.openQuestionnaire;
