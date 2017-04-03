@@ -14,5 +14,71 @@
     </div>
   </div-->
   <div class="row">
+    <div class="small-12 columns">
+      <table>
+        <thead>
+          <tr>
+            <th>Institución</th>
+            <th></th>
+            <th>Autoevaluación</th>
+            
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="i of summary">
+            <td class="small-3">
+              <div>${i.institutionName} ${i.institutionLevel}</div>
+            </td>
+            <td show.bind="i.completed">
+              <table  show.bind="i.completed">
+                <tr>
+                  <td repeat.for="d of i.dimensions">
+                    <span class="texto-vertical-2"><font size="1">${d.name}</font></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td repeat.for="d of i.dimensions">
+                    <dl>
+                      <dd show.bind="d.score > 0 && d.score <= 55" class="dimensionSquare newTooltip" style="background-color: #C3002F">
+                        <span class="tooltiptext">${d.score}</span>
+                      </dd>
+                      <dd show.bind="d.score >= 55 && d.score <= 70" class="dimensionSquare newTooltip" style="background-color: #BDA831">
+                        <span class="tooltiptext">${d.score}</span>
+                      </dd>
+                      <dd show.bind="d.score >= 70 && d.score <= 85" class="dimensionSquare newTooltip" style="background-color: #3FAE49">
+                        <span class="tooltiptext">${d.score}</span>
+                      </dd>
+                      <dd show.bind="d.score >= 85" class="dimensionSquare newTooltip" style="background-color: #365E9E">
+                        <span class="tooltiptext">${d.score}</span>
+                      </dd>
+                    </dl>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td show.bind="!i.completed"></td>
+            <td show.bind="i.completed">
+              <center>
+                <dt class="circle" style="background-color: ${i.color}"></dt>
+                <dd>${i.level}</dd>
+                <dd>${i.score}</dd>
+              </center>
+            </td>
+            <td show.bind="!i.completed"></td>
+            <td>
+              <small>
+                <dt>Preguntas faltantes</dt>
+                <dd>${i.missingQuestions}</dd>
+                <dt>Etapa:</dt>
+                <dd show.bind="i.completed">Plan de mejora</dd>
+                <dd show.bind="!i.completed">Autodiagnóstico</dd>
+              </small>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
