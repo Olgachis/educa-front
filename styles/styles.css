@@ -150,7 +150,7 @@ div.au-stagger {
   border: 1px solid #CCC;
   border-radius: 8px;
   text-align: center;
-  padding: 0;
+  padding: 4px;
   background-color: #337ab7;
   color: rgb(136, 172, 217);
   margin-bottom: 32px;
@@ -159,6 +159,20 @@ div.au-stagger {
 
 .card .content {
   margin-top: 10px;
+}
+
+.tableContent {
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #CCC;
+  border-radius: 8px;
+  text-align: left;
+  padding: 4px;
+  background-color: #FFF;
+  margin-bottom: 32px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  min-height: 20px;
 }
 
 .card .content .name {
@@ -392,9 +406,7 @@ h1, h2, h3, h5 {
     line-height:11px;
 }
 
-.parent {display: table;}
-
-.child {
-    display: table-cell;
-    vertical-align: middle;
+.minPadding {
+  padding: 2px !important;
 }
+

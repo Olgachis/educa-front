@@ -58,7 +58,7 @@ export class Dashboard {
     return innerCampus.map(r => {
 
       r = r.questionnaireResults;
-      console.log( r.institutionName);
+
       r.institutionName = r.institutionName;
       r.color = this.processColor(r);
       r.score = (r.points / r.maxPoints * 100).toFixed(3);
@@ -100,7 +100,6 @@ export class Dashboard {
   }
 
   showDetail(i){
-    console.log(i);
     i.showDetail = !i.showDetail;
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <!--div class="row top-logo">
+  <div class="row top-logo">
     <div class="small-4 large-6 columns">
       <center>
         <a href="/#/dimensions">
@@ -12,15 +12,15 @@
         <img src="../images/logo-02.png" width="300">
       </center>
     </div>
-  </div-->
-  <div class="row card" repeat.for="i of summary">
+  </div>
+  <div class="row tableContent" repeat.for="i of summary">
     <div class="row " >
       <div class="small-3 columns parent">
         <div class="child">${i.institutionName} ${i.institutionLevel}</div>
       </div>
       <div class="small-6 columns">
         <br/>
-        <table show.bind="i.completed">
+        <table show.bind="i.completed" >
           <tr>
             <td repeat.for="d of i.dimensions">
               <span class="texto-vertical-2"><font size="1">${d.name}</font></span>
@@ -68,7 +68,7 @@
           <br/>
         </div>
         <div class="small-2 columns">
-          <small>${i.institutionName} ${i.institutionLevel}</small>
+          <small>${d.institutionName} ${d.institutionLevel}</small>
         </div>
         <div class="small-5 columns">
           <small>
