@@ -16,11 +16,12 @@
   <div class="row tableContent" repeat.for="i of summary">
     <div class="row " >
       <div class="small-3 columns parent">
-        <div class="child">${i.institutionName} ${i.institutionLevel}</div>
+        <div class="child">${i.name}</div>
       </div>
       <div class="small-6 columns">
         <br/>
-        <table show.bind="i.completed" >
+        <small>
+        <table>
           <tr>
             <td repeat.for="d of i.dimensions">
               <span class="texto-vertical-2"><font size="1">${d.name}</font></span>
@@ -29,25 +30,26 @@
           <tr>
             <td repeat.for="d of i.dimensions">
               <dl>
-                <dd show.bind="d.score > 0 && d.score <= 55" class="dimensionSquare newTooltip"
+                <dd show.bind="d.score > 0 && d.score <= 55" class="dimensionSquare "
                     style="background-color: #C3002F">
-                  <span class="tooltiptext">${d.score}</span>
+                  <small><br/>${d.score}</small>
                 </dd>
-                <dd show.bind="d.score >= 55 && d.score <= 70" class="dimensionSquare newTooltip"
+                <dd show.bind="d.score >= 55 && d.score <= 70" class="dimensionSquare "
                     style="background-color: #BDA831">
-                  <span class="tooltiptext">${d.score}</span>
+                  <small><br/>${d.score}</small>
                 </dd>
-                <dd show.bind="d.score >= 70 && d.score <= 85" class="dimensionSquare newTooltip"
+                <dd show.bind="d.score >= 70 && d.score <= 85" class="dimensionSquare "
                     style="background-color: #3FAE49">
-                  <span class="tooltiptext">${d.score}</span>
+                  <small><br/>${d.score}</small>
                 </dd>
-                <dd show.bind="d.score >= 85" class="dimensionSquare newTooltip" style="background-color: #365E9E">
-                  <span class="tooltiptext">${d.score}</span>
+                <dd show.bind="d.score >= 85" class="dimensionSquare " style="background-color: #365E9E">
+                  <small><br/>${d.score}</small>
                 </dd>
               </dl>
             </td>
           </tr>
         </table>
+        </small>
       </div>
       <div class="small-2 columns">
         <br/>
@@ -84,17 +86,21 @@
                     <dd show.bind="d.score > 0 && d.score <= 55" class="dimensionSquare newTooltip"
                         style="background-color: #C3002F">
                       <span class="tooltiptext">${d.score}</span>
+                      <small><br/>${d.score}</small>
                     </dd>
                     <dd show.bind="d.score >= 55 && d.score <= 70" class="dimensionSquare newTooltip"
                         style="background-color: #BDA831">
                       <span class="tooltiptext">${d.score}</span>
+                      <small><br/>${d.score}</small>
                     </dd>
                     <dd show.bind="d.score >= 70 && d.score <= 85" class="dimensionSquare newTooltip"
                         style="background-color: #3FAE49">
                       <span class="tooltiptext">${d.score}</span>
+                      <small><br/>${d.score}</small>
                     </dd>
                     <dd show.bind="d.score >= 85" class="dimensionSquare newTooltip" style="background-color: #365E9E">
                       <span class="tooltiptext">${d.score}</span>
+                      <small><br/>${d.score}</small>
                     </dd>
                   </dl>
                 </td>
@@ -111,6 +117,7 @@
         </div>
       </div>
     </div>
+
   </div>
   </div>
 </template>

@@ -352,7 +352,12 @@ h1, h2, h3, h5 {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  /* width and height can be anything, as long as they're equal */
+}
+
+.innerCircle {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
 .dimensionSquare {
@@ -410,3 +415,6 @@ h1, h2, h3, h5 {
   padding: 2px !important;
 }
 
+.center{
+  text-align: center;
+}

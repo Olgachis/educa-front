@@ -75,13 +75,19 @@ export class Dashboard {
     Utils.showSpinner();
     const summary = await this.api.fetch('/api/summary/listPrimaryCampuses');
     this.summary = (await summary.json()).map(r => {
-      let innerCampus;
-      if(r.innerCampus){
+      let innerCampus, name, showDetail;
+
+      if(r.innerCampus.length > 1){
         innerCampus = this.processInnerCampus(r.innerCampus);
+        showDetail = true;
+      }else{
+        showDetail = false;
       }
 
+      name = r.name;
       r = r.questionnaireResults;
-      r.institutionName = r.institutionName;
+      r.showDetail = showDetail;
+
       let dimensions = _.map(r.dimensionResults, this.transformCoso);
 
       r.canComplete = r.questions == r.maxQuestions;
@@ -94,6 +100,7 @@ export class Dashboard {
       r.innerCampus = innerCampus;
       r.showDetail = false;
 
+      r.name = name;
       return r;
     });
     Utils.hideSpinner();
