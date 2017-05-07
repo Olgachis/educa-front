@@ -1,0 +1,77 @@
+<template>
+</div>
+  <div class="row">
+    <div id="results" show.bind="!showDetail">
+      <div class="medium-12 columns">
+        <h3>Lista de instituciones</h3>
+        <hr/>
+      </div>
+      <div class="medium-12 columns">
+        <table>
+          <thead>
+              <th>No.</th>
+              <th>Nombre</th>
+              <th>Campus</th>
+              <th></th>
+          </thead>
+          <tbody>
+            <tr repeat.for="i of results">
+              <td>${$index}</td>
+              <td>${i.name}</td>
+                <td>${i.campusName}</td>
+              <td><a class="button secondary" click.delegate="showDetailFunc(i)">Detalle</a></td>
+            </tr>
+          <tbody>
+        </table>
+      </div>
+    </div>
+    <div id="detalleInstitucion" show.bind="showDetail" class="medium-12 columns">
+      <div class="medium-12 columns">
+        <h3>Detalle</h3>
+        <hr/>
+      </div>
+      <div class="medium-12 columns">
+        <div class="medium-12 columns">
+          <form>
+            <div class="row">
+              <div class="medium-6 columns">
+                <label>Input Label
+                  <input type="text" value.bind="institution.name" id="q.id">
+                </label>
+              </div>
+              <div class="medium-6 columns">
+                <label>Input Label
+                  <input type="text" placeholder=".medium-6.columns">
+                </label>
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="medium-12 columns">
+          <a class="button alert " click.delegate="hideDetailFunc(i)">Cancelar</a>
+          <a class="button primary " click.delegate="showDetailFunc(i)">Guadar</a>
+        </div>
+        <div class="medium12 colums">
+          <div class="medium-12 columns">
+            <table>
+              <thead>
+                  <th>No.</th>
+                  <th>Nombre</th>
+                  <th>Campus</th>
+              </thead>
+              <tbody>
+                <tr repeat.for="i of institution.innerCampus">
+                  <td>${$index}</td>
+                  <td>${i.name}</td>
+                  <td>${i.campusName}</td>
+
+                </tr>
+              <tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
