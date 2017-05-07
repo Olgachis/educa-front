@@ -42,7 +42,8 @@ var App = (function () {
             { route: 'improvementPlanPrediction', name: 'improvementPlanPrediction', moduleId: './improvementPlanPrediction', nav: true, title: 'Plan de Mejora EDUCA', auth: true },
             { route: 'glossary', name: 'glossary', moduleId: './glossary', nav: true, title: 'Glosario', auth: true },
             { route: 'dashboard', name: 'dashboard', moduleId: './dashboard', nav: true, title: 'Tablero', auth: true },
-            { route: 'adminDashboard', name: 'adminDashboard', moduleId: './adminDashboard', nav: true, title: 'Tablero principal', auth: true }
+            { route: 'adminDashboard', name: 'adminDashboard', moduleId: './adminDashboard', nav: true, title: 'Tablero principal', auth: true },
+            { route: 'institutionList', name: 'institutionList', moduleId: './institutionList', nav: true, title: 'Lista de instituciones', auth: true }
         ]);
         this.router = router;
     };
