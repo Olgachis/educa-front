@@ -26,8 +26,6 @@ export class InstitutionList {
     Utils.showSpinner();
     const summary = await this.api.fetch('/api/institution/list');
     this.results = (await summary.json()).map(r => {
-      console.log('r', r);
-
       return r;
     });
     Utils.hideSpinner();

@@ -1,0 +1,159 @@
+<template>
+</div>
+  <div class="row">
+    <div id="results" show.bind="!showDetail">
+      <div class="medium-12 columns">
+        <h3>Lista de cuestionarios</h3>
+        <hr/>
+      </div>
+      <div class="medium-12 columns">
+        <table>
+          <thead>
+              <th>No.</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th></th>
+          </thead>
+          <tbody>
+            <tr repeat.for="i of questionnaires.questionnaires">
+              <td>${$index + 1}</td>
+              <td>${i.name}</td>
+              <td></td>
+              <td><a class="button secondary" click.delegate="showDetailFunc(i)">Detalle</a></td>
+            </tr>
+          <tbody>
+        </table>
+      </div>
+    </div>
+    <div id="detalleCuestionario" show.bind="showDetail" class="medium-12 columns">
+      <div class="medium-12 columns">
+        <h3>Detalle</h3>
+        <hr/>
+      </div>
+      <div class="medium-12 columns">
+        <div class="medium-12 columns">
+          <form>
+            <div class="row">
+              <div class="medium-6 columns">
+                <label>Nombre
+                  <input type="text" value.bind="questionnaire.name" id="questionnaire.id">
+                </label>
+
+              </div>
+              <div class="medium-6 columns">
+                <label>Descripción
+                  <textarea type="text" rows="5" placeholder="Descripción" value.bind="questionnaire.questionnaire.text"></textarea>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="medium-12 columns">
+          <div class="medium-8 columns">
+          </div>
+          <div class="medium-4 columns">
+            <a class="button alert " click.delegate="hideDetailFunc(questionnaire)">Cancelar</a>
+            <a class="button primary " click.delegate="showDetailFunc(questionnaire)">Guadar</a>
+          </div>
+        </div>
+        <div class="medium-12 colums">
+          <div id="listaPreguntas" show.bind="!showDetailQuestion" class="medium-12 columns">
+            <h4>Lista preguntas</h4>
+            <hr/>
+            <table>
+              <thead>
+                  <th>No.</th>
+                  <th>Pregunta</th>
+                  <th>Tipo</th>
+                  <th></th>
+              </thead>
+              <tbody>
+                <tr repeat.for="q of questionnaire.questionnaire.questions">
+                  <td>${$index}</td>
+                  <td>${q.displayName}</td>
+                  <td>${q.type}</td>
+                  <td><a class="button secondary" click.delegate="showDetailQuestionFunc(q)">Editar</a></td>
+                </tr>
+              <tbody>
+            </table>
+          </div>
+          <div id="detallePregunta" show.bind="showDetailQuestion" class="medium-12 columns">
+            <h4>Editar pregunta</h4>
+            <hr/>
+            <div>
+              <form>
+                <div class="row">
+                  <div class="medium-6 columns">
+                    <label>Id
+                      <input type="text" value.bind="question.id" placeholder=".medium-6.columns">
+                    </label>
+                  </div>
+                  <div class="medium-12 columns">
+                    <label>Pregunta
+                      <textarea type="text" rows="5" value.bind="question.displayName"  placeholder=".medium-6.columns"></textarea>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="medium-6 columns">
+                    <label>Tipo de pregunta
+                      <select value.bind="question.type">
+                        <option value="text">Libre</option>
+                        <option value="options">Opción</option>
+                        <option value="multioptions">Opcion Multiple</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="medium-6 columns">
+
+                  </div>
+                </div>
+                <div class="row" show.bind="question.type == 'options' || question.type == 'multioptions'">
+                  <div class="medium-12 columns">
+                    <h4>Nueva opción</h4>
+                  </div>
+                  <div class="medium-6 columns">
+                    <div class="medium-4 columns">
+                      <label>Tipo de opción
+                        <select value.bind="option.type">
+                          <option value="text">Texto</option>
+                          <option value="otro">Otro</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="medium-6 columns" show.bind="option.type == 'text'">
+                      <label>Texto de la opción
+                        <input type="text" value.bind="option.name">
+                      </label>
+                    </div>
+                    <div class="medium-2 columns">
+                      <br/>
+                      <label>
+                        <a class="button tiny primaty" href="#">Agregar</a>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="medium-6 columns">
+                    <table>
+                      <tbody>
+                        <tr repeat.for="o of question.options">
+                          <td class="medium-10 columns">
+                            <p>${o}</p>
+                          </td>
+                          <td class="medium-2 columns">
+                              <a class="button tiny alert" href="#">Eliminar</a>
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
