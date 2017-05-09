@@ -104,6 +104,7 @@ export class Finance {
 
   async saveQuestionnaire() {
     Utils.showSpinner();
+    console.log(this.selectedQuestionnaire);
     let response = this.api.fetch('/api/simpleQuestionnaire', {
       method: 'post',
       body: json(this.selectedQuestionnaire)
@@ -159,7 +160,7 @@ export class Finance {
           el['displayName'] = "¿Cuáles de las siguientes opciones son ejemplos de una institución financiera?";
         }
       }else if(selectedQuestionnaireId == 'sixth'){
-        
+
         let nuevasOpciones = _.find(modifyQuestionsSecondary, function(o) { return o.id == el['id'] ; });
         if(nuevasOpciones){
           let i = 0;
