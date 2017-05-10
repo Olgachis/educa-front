@@ -43,7 +43,8 @@ var App = (function () {
             { route: 'glossary', name: 'glossary', moduleId: './glossary', nav: true, title: 'Glosario', auth: true },
             { route: 'dashboard', name: 'dashboard', moduleId: './dashboard', nav: true, title: 'Tablero', auth: true },
             { route: 'adminDashboard', name: 'adminDashboard', moduleId: './adminDashboard', nav: true, title: 'Tablero principal', auth: true },
-            { route: 'institutionList', name: 'institutionList', moduleId: './institutionList', nav: true, title: 'Lista de instituciones', auth: true }
+            { route: 'institutionList', name: 'institutionList', moduleId: './institutionList', nav: true, title: 'Lista de instituciones', auth: true },
+            { route: 'adminQuestionnaire', name: 'adminQuestionnaire', moduleId: './adminQuestionnaire', nav: true, title: 'Lista de cuestionarios', auth: true }
         ]);
         this.router = router;
     };
