@@ -1,19 +1,22 @@
 <template>
   <div class="row">
     <div class="small-9 columns">
+      <h3>
+        ${questionnaire.name}
+        <br/>
+        <small>Vista previa cuestionario</small>
+      </h3>
+      <hr/>
     </div>
     <div class="small-3 columns">
-      <a class="button secondary" href="/#/adminDashboard">Regresar</a>
+      <a class="button secondary  pull-right" href="/#/adminQuestionnaire"> Regresar</a>
       <input class="comment pull-right button primary" type='button' onclick='window.print();' value='Imprimir' /></form>
     </div>
+
   </div>
   <div class="row">
     <div class="small-12 columns">
-      <h3>Vista previa cuestionario</h3>
-    </div>
-    <div class="small-12 columns">
-      
-        <div class="large-12 columns b-question q-${q.id}" repeat.for="q of questionnaire.questionnaire.questions">
+        <div repeat.for="q of questionnaire.questionnaire.questions">
           <label>${q.displayName}</label>
           <div if.bind="q.type == 'text'">
             <input type="text" name="${q.id}" value.bind="q.value" id="q.id">
@@ -26,14 +29,16 @@
           </div>
           <div if.bind="q.type == 'options'">
             <div repeat.for="o of q.options">
-              <input checked.bind="q.value" type="radio" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}"><label for="${q.id}-${o.name}">${o.name}</label>
-              <input if.bind="o.other" value.bind="o.otherValue" />
+              <input checked.bind="q.value" type="radio" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}">
+              <label if.bind="!o.other" for="${q.id}-${o.name}">${o}</label>
+              <label if.bind="o.other == true">${o.name}</label>
             </div>
           </div>
           <div if.bind="q.type == 'multioptions'">
             <div repeat.for="o of q.options">
-              <input checked.bind="o.value" type="checkbox" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}"><label for="${q.id}-${o.name}">${o.name}</label>
-              <input if.bind="o.other" value.bind="o.otherValue" />
+              <input checked.bind="o.value" type="checkbox" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}">
+              <label if.bind="!o.other" for="${q.id}-${o.name}">${o}</label>
+              <label if.bind="o.other == true">${o.name}</label>
             </div>
           </div>
         </div>

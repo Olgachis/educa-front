@@ -2,16 +2,14 @@
   </div>
   <div class="row">
     <div id="results" show.bind="!showDetail" class="row">
-      <div class="medium-12 columns">
+      <div class="medium-10 columns">
         <h3>Lista de cuestionarios</h3>
         <hr/>
       </div>
-      <div class="medium-12 columns">
-        <div class="medium-10 columns"></div>
-        <div class="medium-2 columns">
-          <a class="button primary " click.delegate="showDetailFunc(null, 'create')">Nuevo cuestionario</a>
-        </div>
+      <div class="medium-2 columns">
+        <a class="button primary " click.delegate="showDetailFunc(null, 'create')">Nuevo cuestionario</a>
       </div>
+
       <div class="medium-12 columns">
         <table>
           <thead>
@@ -24,8 +22,8 @@
           <tr repeat.for="i of questionnaires.questionnaires">
             <td>${$index + 1}</td>
             <td>${i.name}</td>
-            <td></td>
-            <td><a class="button secondary" click.delegate="showDetailFunc(i, 'edit')">Detalle</a></td>
+            <td><a class="button secondary" href="/#/${i.id}/previewQuestionnaire">Vista Previa</a></td>
+            <td><a class="button primary" click.delegate="showDetailFunc(i, 'edit')">Editar</a></td>
           </tr>
           <tbody>
         </table>
@@ -39,7 +37,7 @@
         </div>
         <div class="medium-3 columns">
           <a class="button alert " click.delegate="hideDetailFunc(questionnaire)">Cancelar</a>
-          <button class="button primary" click.trigger="createQuestionnaire()"
+          <button class="button primary pull-right" click.trigger="createQuestionnaire()"
                   disabled.bind="!questionnaire.name">Guadar
           </button>
         </div>
