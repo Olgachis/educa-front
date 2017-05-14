@@ -16,7 +16,7 @@
           </thead>
           <tbody>
             <tr repeat.for="i of results">
-              <td>${$index}</td>
+              <td>${$index + 1}</td>
               <td>${i.name}</td>
                 <td>${i.campusName}</td>
               <td><a class="button secondary" click.delegate="showDetailFunc(i)">Detalle</a></td>
@@ -49,8 +49,8 @@
 
         </div>
         <div class="medium-12 columns">
-          <a class="button alert " click.delegate="hideDetailFunc(i)">Cancelar</a>
-          <a class="button primary " click.delegate="showDetailFunc(i)">Guadar</a>
+          <a class="button alert pull-right" click.delegate="hideDetailFunc(i)">Cancelar</a>
+          <a class="button primary pull-right" click.delegate="showDetailFunc(i)">Guadar</a>
         </div>
         <div class="medium12 colums">
           <div class="medium-12 columns">
