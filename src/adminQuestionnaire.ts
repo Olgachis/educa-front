@@ -84,7 +84,7 @@ export class AdminQuestionnaire {
     this.cleanVariables();
   }
 
-  async createQuestionnaire(): Promise<void> {
+  async saveQuestionnaire(): Promise<void> {
     await fetch;
     this.api = new Api(this.config);
     Utils.showSpinner();
@@ -101,6 +101,7 @@ export class AdminQuestionnaire {
     console.log('saveEditQuestion', questionData);
     let recoverQuestion = _.find(this.question.options, function(o) { return o == questionData; });
     _.replace(this.question.options, this.identity, questionData);
+    this.saveQuestionnaire();
     this.showDetailQuestion = false;
     this.question = null;
     this.identity = null;
@@ -109,7 +110,13 @@ export class AdminQuestionnaire {
   addQuestion(){
     this.questionnaire.questionnaire.questions.push(this.question);
     this.showDetailQuestion = false;
+    this.saveQuestionnaire();
     this.question = null;
+  }
+
+  deleteQuestion(questionData){
+    let optionIndex = _.findIndex(this.questionnaire.questionnaire.questions, function(o) { return o == questionData; });
+    this.questionnaire.questionnaire.questions.splice(optionIndex,1);
   }
 
   addOptionQuestion(optionData){

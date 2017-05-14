@@ -54,6 +54,7 @@ export class App {
       { route: 'institutionList', name: 'institutionList', moduleId: './institutionList', nav: true, title: 'Lista de instituciones', auth: true },
       { route: 'adminQuestionnaire', name: 'adminQuestionnaire', moduleId: './adminQuestionnaire', nav: true, title: 'Lista de cuestionarios', auth: true },
       { route: ':id/previewQuestionnaire', name: 'previewQuestionnaire', moduleId: './previewQuestionnaire' }
+
     ]);
 
     this.router = router;
