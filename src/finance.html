@@ -79,7 +79,7 @@
     </div>
     <ol class="medium-12 columns dim-list">
       <li repeat.for="q of questionnaires.questionnaires">
-        <a click.delegate="showQuestionnaireList(q)"> ${$index + 1} ${q.name}</a>
+        <a show.bind="q.active" click.delegate="showQuestionnaireList(q)"> ${$index + 1} ${q.name}</a>
       </li>
     </ol>
   </div>

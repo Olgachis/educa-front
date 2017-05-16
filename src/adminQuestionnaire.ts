@@ -52,6 +52,7 @@ export class AdminQuestionnaire {
   hideDetailFunc(questionnaireData){
     this.showDetail = false;
     this.cleanVariables();
+    this.activate();
   }
 
   showDetailQuestionFunc(questionData){
