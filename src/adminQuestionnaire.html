@@ -1,15 +1,14 @@
 <template>
-  </div>
   <div class="row">
     <div id="results" show.bind="!showDetail" class="row">
-      <div class="medium-10 columns">
+      <div class="medium-8 columns">
         <h3>Lista de cuestionarios</h3>
         <hr/>
       </div>
-      <div class="medium-2 columns">
-        <a class="button primary " click.delegate="showDetailFunc(null, 'create')">Nuevo cuestionario</a>
+      <div class="medium-4 columns">
+        <a class="button secondary pull-right" href="/#/adminDashboard">Regresar</a>
+        <a class="button primary pull-right" click.delegate="showDetailFunc(null, 'create')">Nuevo cuestionario</a>
       </div>
-
       <div class="medium-12 columns">
         <table>
           <thead>
@@ -126,13 +125,13 @@
               <div class="medium-12">
                 <div class="medium-6 columns">
                   <label>Id
-                    <input type="text" value.bind="question.id" placeholder=".medium-6.columns">
+                    <input type="text" value.bind="question.id" placeholder="Id de pregunta">
                   </label>
                 </div>
                 <div class="medium-6 columns">
                   <label>Pregunta
                     <textarea type="text" rows="5" value.bind="question.displayName"
-                              placeholder=".medium-6.columns"></textarea>
+                              placeholder="Pregunta"></textarea>
                   </label>
                 </div>
               </div>

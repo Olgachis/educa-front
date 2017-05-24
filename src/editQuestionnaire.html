@@ -1,0 +1,60 @@
+<template>
+  <div class="row">
+    <div class="small-9 columns">
+    </div>
+    <div class="small-3 columns">
+      <a class="button secondary pull-right" href="/#/adminDashboard">Regresar</a>
+    </div>
+  </div>
+  <ol class="medium-12 columns dim-list">
+    <li repeat.for="q of questionnaires.questionnaires">
+      <a show.bind="q.active" click.delegate="showQuestionnaireList(q)"> ${$index + 1} ${q.name}</a>
+    </li>
+  </ol>
+  <div class="row" show.bind="listEnabled">
+    <div class="clearfix">
+      <div class="float-right">
+        <a click.delegate="createDataChart()" class="button success">Nueva respuesta</a>
+      </div>
+    </div>
+    <div class="medium-4 columns">
+      <h5>${displayNameQ1}</h5>
+      <hr/>
+      <svg id="test1" class="mypiechart"></svg>
+    </div>
+    <div class="medium-4 columns">
+      <h5>${displayNameQ2}</h5>
+      <hr/>
+      <svg id="test2" class="mypiechart"></svg>
+    </div>
+    <div class="medium-4 columns">
+      <h5>${displayNameQ3}</h5>
+      <hr/>
+      <svg id="test3" class="mypiechart"></svg>
+    </div>
+
+
+    <table show.bind="false">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr repeat.for="r of responses.responses">
+          <td>${r.title}</td>
+          <td>
+            <table>
+              <tr repeat.for="q of r.data.questions">
+                <td>${q.type}</td>
+                <td>${q.displayName}</td>
+                <td>${q.value}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>

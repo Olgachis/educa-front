@@ -53,7 +53,8 @@ export class App {
       { route: 'adminDashboard', name: 'adminDashboard', moduleId: './adminDashboard', nav: true, title: 'Tablero principal', auth: true },
       { route: 'institutionList', name: 'institutionList', moduleId: './institutionList', nav: true, title: 'Lista de instituciones', auth: true },
       { route: 'adminQuestionnaire', name: 'adminQuestionnaire', moduleId: './adminQuestionnaire', nav: true, title: 'Lista de cuestionarios', auth: true },
-      { route: ':id/previewQuestionnaire', name: 'previewQuestionnaire', moduleId: './previewQuestionnaire' }
+      { route: ':id/previewQuestionnaire', name: 'previewQuestionnaire', moduleId: './previewQuestionnaire' },
+      { route: 'editQuestionnaire', name: 'editQuestionnaire', moduleId: './editQuestionnaire', nav: true, title: 'Lista de resultados', auth: true },
 
     ]);
 

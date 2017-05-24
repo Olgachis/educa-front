@@ -113,11 +113,13 @@ export class AdminQuestionnaire {
     this.showDetailQuestion = false;
     this.saveQuestionnaire();
     this.question = null;
+    this.saveQuestionnaire();
   }
 
   deleteQuestion(questionData){
     let optionIndex = _.findIndex(this.questionnaire.questionnaire.questions, function(o) { return o == questionData; });
     this.questionnaire.questionnaire.questions.splice(optionIndex,1);
+    this.saveQuestionnaire();
   }
 
   addOptionQuestion(optionData){
