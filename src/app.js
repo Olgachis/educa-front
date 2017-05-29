@@ -46,7 +46,7 @@ var App = (function () {
             { route: 'institutionList', name: 'institutionList', moduleId: './institutionList', nav: true, title: 'Lista de instituciones', auth: true },
             { route: 'adminQuestionnaire', name: 'adminQuestionnaire', moduleId: './adminQuestionnaire', nav: true, title: 'Lista de cuestionarios', auth: true },
             { route: ':id/previewQuestionnaire', name: 'previewQuestionnaire', moduleId: './previewQuestionnaire' },
-            { route: 'editQuestionnaire', name: 'editQuestionnaire', moduleId: './editQuestionnaire', nav: true, title: 'Lista de resultados', auth: true },
+            { route: 'resultados', name: 'resultados', moduleId: './editQuestionnaire', nav: true, title: 'Lista de resultados', auth: true },
         ]);
         this.router = router;
     };
