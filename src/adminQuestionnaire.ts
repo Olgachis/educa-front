@@ -93,9 +93,12 @@ export class AdminQuestionnaire {
       method: 'post',
       body: json(this.questionnaire)
     });
-    this.questionnaire = (await response.json());
-    console.log(this.questionnaire);
-    Utils.hideSpinner();
+    await response.json().then(data => {
+      this.questionnaire = data;
+      console.log(this.questionnaire);
+      Utils.hideSpinner();
+    });
+
   }
 
   saveEditQuestion(questionData){
