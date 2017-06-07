@@ -113,7 +113,6 @@ export class AdminQuestionnaire {
     this.showDetailQuestion = false;
     this.saveQuestionnaire();
     this.question = null;
-    this.saveQuestionnaire();
   }
 
   deleteQuestion(questionData){
