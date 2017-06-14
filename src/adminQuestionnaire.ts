@@ -155,4 +155,29 @@ export class AdminQuestionnaire {
     var index = _.indexOf(collection, _.find(collection, identity));
     collection.splice(index, 1, replacement);
   }
+
+  //Subir bajar etapas
+  subirEtapa = function (stage) {
+    var indice = _.indexOf(this.questionnaire.questionnaire.questions, stage);
+    if (indice > 0){
+      this.cambiarEtapa(indice, indice-1);
+    }
+  };
+
+  bajarEtapa = function (stage) {
+    var indice = _.indexOf(this.questionnaire.questionnaire.questions, stage);
+    if (indice!==-1 && indice < this.questionnaire.questionnaire.questions.length-1){
+      this.cambiarEtapa(indice, indice + 1);
+    }
+  };
+
+  cambiarEtapa = function (num1, num2) {
+    var itemTem = this.questionnaire.questionnaire.questions[num1];
+    var item2 = this.questionnaire.questionnaire.questions[num2];
+    //Actualizando datos
+    this.questionnaire.questionnaire.questions[num1] = item2;
+    this.questionnaire.questionnaire.questions[num2] = itemTem;
+
+    this.saveQuestionnaire();
+  }
 }
