@@ -83,10 +83,12 @@
             <div id="medium-12 columns">
               <table>
                 <thead>
-                <th>No.</th>
-                <th>Pregunta</th>
-                <th>Tipo</th>
-                <th></th>
+                  <th>No.</th>
+                  <th>Pregunta</th>
+                  <th>Tipo</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                   <th></th>
                 </thead>
                 <tbody>
@@ -94,6 +96,9 @@
                   <td>${$index}</td>
                   <td class="medium-8 columns">${q.displayName}</td>
                   <td>${q.type}</td>
+                  <i class=""></i>
+                  <td><a class="step fi-arrow-up size-24 pull-right" click.trigger="subirEtapa(q)">Subir</a></td>
+                  <td><a class="fi-arrow-down pull-right" click.trigger="bajarEtapa(q)">Bajar</a></td>
                   <td><a class="button secondary pull-right" click.delegate="editQuestion(q)">Editar</a></td>
                   <td><a class="button alert pull-right" click.delegate="deleteQuestion(q)">Eliminar</a></td>
                 </tr>

@@ -45,6 +45,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import { inject } from 'aurelia-framework';
 import { AureliaConfiguration } from 'aurelia-configuration';
 import { Api } from './api';
+import { Utils } from './utils';
 import * as _ from 'lodash';
 import * as nv from 'nvd3';
 import * as d3 from 'd3';
@@ -57,7 +58,12 @@ function innerCreateDataChart(idGrafica, responses) {
     var datos = _.groupBy(question1, 'value');
     var testdata = new Array();
     _.forEach(datos, function (value, key) {
-        testdata.push({ key: key, y: value.length });
+        if (key && key != 'undefined') {
+            testdata.push({ key: key, y: value.length });
+        }
+        else {
+            testdata.push({ key: 'Sin contestar', y: value.length });
+        }
     });
     var height = 400;
     var width = 400;
@@ -66,7 +72,7 @@ function innerCreateDataChart(idGrafica, responses) {
             .x(function (d) { return d.key; })
             .y(function (d) { return d.y; })
             .width(width)
-            .labelThreshold(.05)
+            .labelThreshold(.1)
             .height(height);
         var selectGrafica = '#test' + idGrafica;
         d3.select(selectGrafica)
@@ -80,7 +86,6 @@ function innerCreateDataChart(idGrafica, responses) {
 }
 ;
 function innerCreateDataBarChart(idGrafica, responses) {
-    console.log('innerCreateDataBarChart', idGrafica);
     var optionsQuestionM = new Array();
     var values = new Array();
     _.forEach(responses, function (value) {
@@ -155,6 +160,7 @@ var EditQuestionnaire = (function () {
                         this.selectedQuestionnaire = questionnaire;
                         selectedQuestionnaireId = this.selectedQuestionnaire.id;
                         index = 0;
+                        Utils.showSpinner();
                         return [4 /*yield*/, this.api.fetch('/api/simpleQuestionnaire/' + questionnaire.id + '/listFullResponses')];
                     case 1:
                         responses = _b.sent();
@@ -162,7 +168,6 @@ var EditQuestionnaire = (function () {
                         return [4 /*yield*/, responses.json().then(function (data) {
                                 _this.responses = data.responses;
                                 _.forEach(_this.selectedQuestionnaire.questionnaire.questions, function (value) {
-                                    console.log(index);
                                     if (value.type == "options" || value.type == "text") {
                                         innerCreateDataChart(index, data.responses);
                                     }
@@ -171,6 +176,7 @@ var EditQuestionnaire = (function () {
                                     }
                                     index++;
                                 });
+                                Utils.hideSpinner();
                             })];
                     case 2:
                         _a.responses = _b.sent();

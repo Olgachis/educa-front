@@ -31,14 +31,16 @@
             <div repeat.for="o of q.options">
               <input checked.bind="q.value" type="radio" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}">
               <label if.bind="!o.other" for="${q.id}-${o.name}">${o}</label>
-              <label if.bind="o.other == true">${o.name}</label>
+              <label if.bind="o.other == true">${o.name} </label>
+              <input if.bind="q.value && o.other == true" value.bind="o.otherValue" />
             </div>
           </div>
           <div if.bind="q.type == 'multioptions'">
             <div repeat.for="o of q.options">
               <input checked.bind="o.value" type="checkbox" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}">
               <label if.bind="!o.other" for="${q.id}-${o.name}">${o}</label>
-              <label if.bind="o.other == true">${o.name}</label>
+              <label if.bind="o.other == true">${o.name} -- ${q.value}</label>
+              <input if.bind="o.value && o.other == true" value.bind="o.otherValue" />
             </div>
           </div>
         </div>

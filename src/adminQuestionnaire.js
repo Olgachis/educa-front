@@ -54,6 +54,25 @@ var AdminQuestionnaire = (function () {
         this.showDetailQuestion = false;
         this.showNewQuestionnaire = false;
         this.showEditQuestion = false;
+        this.subirEtapa = function (stage) {
+            var indice = _.indexOf(this.questionnaire.questionnaire.questions, stage);
+            if (indice > 0) {
+                this.cambiarEtapa(indice, indice - 1);
+            }
+        };
+        this.bajarEtapa = function (stage) {
+            var indice = _.indexOf(this.questionnaire.questionnaire.questions, stage);
+            if (indice !== -1 && indice < this.questionnaire.questionnaire.questions.length - 1) {
+                this.cambiarEtapa(indice, indice + 1);
+            }
+        };
+        this.cambiarEtapa = function (num1, num2) {
+            var itemTem = this.questionnaire.questionnaire.questions[num1];
+            var item2 = this.questionnaire.questionnaire.questions[num2];
+            this.questionnaire.questionnaire.questions[num1] = item2;
+            this.questionnaire.questionnaire.questions[num2] = itemTem;
+            this.saveQuestionnaire();
+        };
         this.config = config;
         this.api = new Api(this.config);
     }
@@ -129,12 +148,13 @@ var AdminQuestionnaire = (function () {
     };
     AdminQuestionnaire.prototype.saveQuestionnaire = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response, _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var _this = this;
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0: return [4 /*yield*/, fetch];
                     case 1:
-                        _b.sent();
+                        _a.sent();
                         this.api = new Api(this.config);
                         Utils.showSpinner();
                         return [4 /*yield*/, this.api.fetch('/api/questionnaire', {
@@ -142,13 +162,14 @@ var AdminQuestionnaire = (function () {
                                 body: json(this.questionnaire)
                             })];
                     case 2:
-                        response = _b.sent();
-                        _a = this;
-                        return [4 /*yield*/, response.json()];
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json().then(function (data) {
+                                _this.questionnaire = data;
+                                console.log(_this.questionnaire);
+                                Utils.hideSpinner();
+                            })];
                     case 3:
-                        _a.questionnaire = (_b.sent());
-                        console.log(this.questionnaire);
-                        Utils.hideSpinner();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -168,7 +189,6 @@ var AdminQuestionnaire = (function () {
         this.showDetailQuestion = false;
         this.saveQuestionnaire();
         this.question = null;
-        this.saveQuestionnaire();
     };
     AdminQuestionnaire.prototype.deleteQuestion = function (questionData) {
         var optionIndex = _.findIndex(this.questionnaire.questionnaire.questions, function (o) { return o == questionData; });

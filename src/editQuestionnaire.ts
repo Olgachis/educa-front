@@ -11,7 +11,7 @@ import * as nv from 'nvd3';
 import * as d3 from 'd3';
 
 function innerCreateDataChart(idGrafica, responses){
-    //console.log('innerCreateDataChart', idGrafica);
+
     var question1 = new Array();
     _.forEach(responses, function(value) {
       let questions = value.data.questions;
@@ -19,9 +19,15 @@ function innerCreateDataChart(idGrafica, responses){
     });
 
     let datos = _.groupBy(question1, 'value');
+
     var testdata = new Array();
     _.forEach(datos, function(value, key) {
-      testdata.push({key:key, y:value.length});
+      //console.log('key', key);
+      if(key && key != 'undefined'){
+        testdata.push({key:key, y:value.length});
+      }else{
+        testdata.push({key:'Sin contestar', y:value.length});
+      }
     });
     var height = 400;
     var width = 400;
@@ -30,10 +36,10 @@ function innerCreateDataChart(idGrafica, responses){
           .x(function(d) { return d.key })
           .y(function(d) { return d.y })
           .width(width)
-          .labelThreshold(.05)
+          .labelThreshold(.1)
           .height(height);
           var selectGrafica = '#test' + idGrafica;
-          //console.log('selectGrafica', selectGrafica);
+
           d3.select(selectGrafica)
               .datum(testdata)
               .transition().duration(1200)
@@ -46,7 +52,6 @@ function innerCreateDataChart(idGrafica, responses){
   };
 
 function innerCreateDataBarChart(idGrafica, responses){
-  console.log('innerCreateDataBarChart', idGrafica);
     var optionsQuestionM = new Array();
     var values = new Array();
 
@@ -125,12 +130,12 @@ export class EditQuestionnaire {
 
     let selectedQuestionnaireId = this.selectedQuestionnaire.id;
     var index = 0;
-
+    Utils.showSpinner();
     const responses = await this.api.fetch('/api/simpleQuestionnaire/' + questionnaire.id + '/listFullResponses');
     this.responses = await responses.json().then(data => {
       this.responses = data.responses;
       _.forEach(this.selectedQuestionnaire.questionnaire.questions, function(value) {
-        console.log(index);
+
         if(value.type == "options" || value.type == "text") {
           innerCreateDataChart(index, data.responses);
         } if (value.type == "multioptions") {
@@ -138,6 +143,7 @@ export class EditQuestionnaire {
         }
         index++;
       });
+      Utils.hideSpinner();
     });
   }
 
@@ -261,7 +267,6 @@ export class EditQuestionnaire {
         nv.utils.windowResize(chart.update);
         return chart;
     });
-
   }
 
 
