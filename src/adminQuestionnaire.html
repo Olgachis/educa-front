@@ -63,6 +63,16 @@
                         value.bind="questionnaire.questionnaire.text"></textarea>
             </label>
           </div>
+          <div class="medium-6 columns">
+            <label>Función (solo en caso de se necesario)
+              <input type="text" value.bind="questionnaire.titleFunc">
+            </label>
+          </div>
+          <div class="medium-6 columns">
+            <label>Activar cuestionario ${questionnaire.active}
+              <input type="checkbox" checked.bind="questionnaire.active" />
+            </label>
+          </div>
         </div>
         <div id="listaPreguntas" show.bind="!showDetailQuestion && questionnaire.responseCount > 0" class="medium-12 columns">
           <div class="medium-12 columns callout primary">
@@ -84,6 +94,7 @@
               <table>
                 <thead>
                   <th>No.</th>
+                  <th>Id</th>
                   <th>Pregunta</th>
                   <th>Tipo</th>
                   <th></th>
@@ -94,6 +105,7 @@
                 <tbody>
                 <tr repeat.for="q of questionnaire.questionnaire.questions">
                   <td>${$index}</td>
+                  <td>${q.id}</td>
                   <td class="medium-8 columns">${q.displayName}</td>
                   <td>${q.type}</td>
                   <i class=""></i>
