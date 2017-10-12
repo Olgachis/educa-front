@@ -1,22 +1,122 @@
 <template>
-  <section class="au-animate">
-    <div class="row login-row">
-      <div class="medium-6 medium-centered large-4 large-centered columns">
-
+  <section show.bind="showLogin == true" class="au-animate">
+    <div class="row">
+      <div class="large-4 columns login-form-back">
         <form submit.delegate="submit()">
           <div class="row column login-form">
-            <h4 class="text-center educa-login">EDUCA</h4>
+            <h4 class="text-center educa-login blueColor">EDUCA</h4>
             <label>Nombre de usuario
               <input type="text" value.bind="username" placeholder="Nombre de usuario">
             </label>
             <label>Password
               <input type="password" value.bind="password" placeholder="Password">
             </label>
-            <p><input type="submit" class="button expanded" value="Entrar" /></p>
+            <p><input type="submit" class="button expanded backgroundBlueColor" value="Entrar" /></p>
+          </div>
+          <h3 class="blueColor"> Acerca del Modelo</h3>
+          <div class="large-12 columns">
+            <ul class="side-nav ">
+              <li>
+                <a class="blueColor" click.trigger="showDetailFunc()" href="#">Nuestro Modelo de Colaboración </a>
+              </li>
+              <li>
+                <a class="blueColor" click.trigger="showDonantesFunc()" href="#">Donantes </a>
+              </li>
+            </ul>
           </div>
         </form>
-
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </div>
+      <div class="large-8 columns">
+        <img src="../images/principal.png" width="800" height="600">
+      </div>
+    </div>
+  </section>
+  <section show.bind="showModelo == true">
+    <div class="row">
+      <a class="button primary backgroundBlueColor" click.trigger="showLoginFunc()">X</a>
+    </div>
+    <div class="row">
+      <img src="../images/modelo-full.png">
+      <!--
+      <div class="small-5 columns">
+        <p>El objetivo de Fundación EDUCA México, A.C., es consolidar comunidades educativas
+          en tres ejes que EDUCA considera estratégicos:</p>
+          <ul>
+            <li>Fortalecimiento Institucional</li>
+            <li>Calidad Educativa</li>
+            <li>Calidad de vida sostenible</li>
+          </ul>
+        <h4 class="blueColor">Objetivo del Modelo</h4>
+        <p>Establecer un modelo de mejora continua en las instituciones de la RED EDUCA a
+          través de la autoevaluación, la planeación estratégica y el trabajo colegiado que eleve
+          la calidad de los servicios educativos que ofrecen.</p>
+        <h4 class="blueColor">Características generales del Modelo</h4>
+        <p>El Modelo está planteado para implementarse en cuatro años, por lo que contempla
+          cuatro niveles de madurez institucional</p>
+        <p>Los indicadores del Modelo están alineados a las diez dimensiones de evaluación
+          institucional, que en su conjunto arrojan una valoración de 100 puntos como métrica
+          máxima para evaluar la excelencia institucional.</p>
+        <p>Los niveles de madurez institucional son:</p>
+        <ul>
+          <li>Consolidación</li>
+          <li>Estable</li>
+          <li>Inestable</li>
+          <li>Alto Riesgo</li>
+        </ul>
+        <h5 blueColor>Implementación del Modelo</h5>
+        <p>El Modelo se implementa a partir de 5 fases a
+          lo largo del ciclo escolar (10 meses), en las
+          que intervienen diferentes actores.</p>
+          <ul>
+            <li>Fase 1. Autodiagnóstico Institucional.</li>
+            <li>Fase 2. Elaboración del Plan de Mejora EDUCA.</li>
+            <li>Fase 3. Implementación de Plan de Mejora con el
+              apoyo de un coach organizacional y/o
+              educativo.</li>
+            <li>Fase 4. Evaluación del trabajo realizado</li>
+            <li> Fase 5. Presentación de resultados en sesiones
+              plenarias</li>
+          </ul>
+      </div>
+      <div class="small-6 columns">
+        <br/>
+        <img src="../images/modelo.png" width="600">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h4 class="blueColor">Ejes transversales del Modelo EDUCA</h4>
+        <ul>
+          <li>Respeto por la filosofía institucional y metodología
+            educativa de cada institución de la RED EDUCA.</li>
+          <li>Universalidad de la propuesta: Independientemente de
+            las metodologías y niveles atendidos, el Modelo es
+            aplicable a toda la RED.</li>
+          <li>Promueve la Responsabilidad Social en todos los
+            niveles de las instituciones</li>
+        </ul>
+      </div>
+      -->
+    </div>
+  </section>
+  <section show.bind="showDonantes == true">
+    <div class="row">
+      <a class="button primary backgroundBlueColor" click.trigger="showLoginFunc()">X</a>
+    </div>
+    <div class="row">
+      <img src="../images/donantes-full.png">
     </div>
   </section>
 </template>

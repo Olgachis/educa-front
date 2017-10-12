@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
 }
@@ -44,7 +45,7 @@ body {
 }
 
 .welcome {
-  background: url(/images/pencils.jpg) no-repeat center center fixed;
+  background: url(/images/imagenLateral.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -59,7 +60,7 @@ body {
 }
 
 h4.educa-login {
-  background: url(/images/logo.png) no-repeat center center;
+  background: url(/images/MODELO_C_EDUCA.png) no-repeat center center;
   background-size: auto 100%;
   height: 100px;
   text-indent: -9999px;
@@ -71,7 +72,7 @@ h4.educa-login {
 
 .login-row form {
   margin-top: 5rem;
-  background-color: #fff;
+  background-color: #002d73;
 }
 
 .body {
@@ -418,3 +419,51 @@ h1, h2, h3, h5 {
 .center{
   text-align: center;
 }
+
+.principalText{
+  color: #375D9D ;
+}
+
+.login-form-back{
+  background-color: #C4D600 ;
+  padding: 10px;
+}
+
+.whiteColor{
+  color: white !important;
+}
+
+.blueColor{
+  color: #002D74 !important;
+}
+
+.backgroundBlueColor{
+  background-color: #002D74 !important;
+}
+
+.institutionDashboard {
+  background: url(/images/institution-dashboard.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+
+.donantes {
+  background: url(/images/donantes-full.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+
+.nombreInstitucion{
+  position: absolute;
+  top: 620px;
+  right: 120;
+  width: 350px;
+  height: 100px;
+}
+

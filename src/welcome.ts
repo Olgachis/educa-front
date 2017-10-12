@@ -12,6 +12,9 @@ export class Welcome {
   private router;
   private config;
   private me;
+  private showModelo;
+  private showDonantes;
+  private showLogin = true ;
   //Getters can't be directly observed, so they must be dirty checked.
   //However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
   //To optimize by declaring the properties that this getter is computed from, uncomment the line below
@@ -24,12 +27,15 @@ export class Welcome {
   constructor(router,config) {
     this.router = router;
     this.config = config;
+
   }
+
 
   async submit() {
     let api = new Api(this.config);
     console.log('Logging in', this.username);
     let data : any = await api.login(this.username, this.password);
+
     if(data.access_token) {
       localStorage.setItem('auth_token', JSON.stringify(data));
       const me = await api.fetch('/api/me');
@@ -39,7 +45,7 @@ export class Welcome {
       } else if(this.me.role == 'finance') {
         this.router.navigate('finance');
       } else {
-        this.router.navigate('dimensions');
+        this.router.navigate('institutionDashboard');
       }
     } else {
       //Handle error
@@ -47,5 +53,21 @@ export class Welcome {
     }
   }
 
-}
+  showDetailFunc(){
+    this.showModelo = true;
+    this.showDonantes = false;
+    this.showLogin = false;
+  }
 
+  showLoginFunc(){
+    this.showModelo = false;
+    this.showDonantes = false;
+    this.showLogin = true;
+  }
+
+  showDonantesFunc(){
+    this.showModelo = false;
+    this.showDonantes = true;
+    this.showLogin = false;
+  }
+}

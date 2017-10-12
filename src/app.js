@@ -30,7 +30,7 @@ var App = (function () {
         config.title = 'EDUCA';
         config.addPipelineStep('authorize', AuthorizeStep);
         config.map([
-            { route: ['', 'welcome'], name: 'welcome', moduleId: './welcome', nav: true, title: 'Modelo de gestión de calidad institucional EDUCA', class: 'welcome' },
+            { route: ['', 'welcome'], name: 'welcome', moduleId: './welcome', nav: true },
             { route: 'finance', name: 'finance', moduleId: './finance', nav: true, title: 'Finanzas personales', auth: true },
             { route: 'dimensions', name: 'dimensions', moduleId: './dimensions', nav: true, title: 'Dimensiones', auth: true },
             { route: 'admin', name: 'admin', moduleId: './admin', nav: false, title: 'Administración', auth: true },
@@ -47,6 +47,7 @@ var App = (function () {
             { route: 'adminQuestionnaire', name: 'adminQuestionnaire', moduleId: './adminQuestionnaire', nav: true, title: 'Lista de cuestionarios', auth: true },
             { route: ':id/previewQuestionnaire', name: 'previewQuestionnaire', moduleId: './previewQuestionnaire' },
             { route: 'resultados', name: 'resultados', moduleId: './editQuestionnaire', nav: true, title: 'Lista de resultados', auth: true },
+            { route: 'institutionDashboard', name: 'InstitutionDashboard', moduleId: './institutionDashboard', nav: true, auth: true },
         ]);
         this.router = router;
     };
