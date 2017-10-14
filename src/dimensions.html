@@ -16,7 +16,7 @@
     </div>
     <div class="row">
       <div class="small-12 columns">
-        <h4>Modelo de Gestión de Calidad Institucional EDUCA</h4>
+        <h4 class="blueColor">Modelo de Gestión de Calidad Institucional EDUCA</h4>
         <p>La institución ha completado su cuestionario, para revisar los resultados de su Autodiagnóstico Institucional EDUCA, por favor entre a la siguiente liga: <a href="/#/selfAssessment">AUTODIAGNÓSTICO</a></p>
         <p>Una vez que hayan revisado su Autodiagnóstico, les invitamos a ingresar al Plan de Mejora EDUCA, donde podrán seleccionar  las acciones a implementar en su institución, de acuerdo a sus necesidades e intereses.
         </p>
@@ -27,7 +27,7 @@
   <div id="" show.bind="!finished">
     <div class="row" show.bind="questionnaireEnabled">
       <div class="small- columns">
-        <h4>${selectedDimension.id.name}</h4>
+        <h4 class="blueColor">${selectedDimension.id.name}</h4>
         <form>
           <div class="large-12 columns a-question q-${selectedDimension.id.number}-${q.id}" repeat.for="q of selectedDimension.questions">
             <label>${q.question}</label>
@@ -78,7 +78,7 @@
       </div>
       <div class="row"></div>
       <div class="small-12 columns">
-        <h4 class="principalText">Modelo de Colaboración EDUCA</h4>
+        <h4 class="blueColor">Modelo de Colaboración EDUCA</h4>
         <p>
           Bienvenido, aquí puede consultar el avance de: ${me.institution}
         </p>
@@ -92,8 +92,8 @@
           Te invitamos a realizar su Autodiagnóstico Institucional. Es importante guardar los cambios efectuados, para que en caso que no termines el proceso en una sola sesión, puedas continuar el llenado en la dimensión en la que detuviste la evaluación; de igual forma, te sugerimos que revises que todos los indicadores fueron contestados, porque de lo contrario no se generará la evaluación.
         </p>
         <p>Las dudas o comentarios puedes dirigirlas a:
-          <a href="mailto:monica5@educa.org.mx">monica5@educa.org.mx</a> ó
-          <a href="mailto:enriqueta.rodriguez@educa.org.mx">enriqueta.rodriguez@educa.org.mx</a>
+          <a class="blueColor" href="mailto:monica5@educa.org.mx">monica5@educa.org.mx</a> ó
+          <a class="blueColor" href="mailto:enriqueta.rodriguez@educa.org.mx">enriqueta.rodriguez@educa.org.mx</a>
         </p>
         <p>¡Gracias por su atención!</p>
         <!--toDo: Poner dos columnas  -->

@@ -461,9 +461,18 @@ h1, h2, h3, h5 {
 
 .nombreInstitucion{
   position: absolute;
-  top: 620px;
+  top: 350px;
   right: 120;
-  width: 350px;
+  width: 250px;
   height: 100px;
+}
+
+.personas {
+  background: url(/images/fondoPanel.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
 }
 
