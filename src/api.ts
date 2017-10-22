@@ -35,7 +35,7 @@ export class Api {
     })
     .then(response => response.json());
   }
-  fetch(url: string, params: any = {}) {
+  fetch(url: string, params: any = {}): Promise<Response> {
     let client = new HttpClient();
     let obj = localStorage.getItem('auth_token');
     url = this.endpoint + url;
