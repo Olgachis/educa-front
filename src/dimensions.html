@@ -17,10 +17,10 @@
     <div class="row">
       <div class="small-12 columns">
         <h4 class="blueColor">Modelo de Gestión de Calidad Institucional EDUCA</h4>
-        <p>La institución ha completado su cuestionario, para revisar los resultados de su Autodiagnóstico Institucional EDUCA, por favor entre a la siguiente liga: <a href="/#/selfAssessment">AUTODIAGNÓSTICO</a></p>
-        <p>Una vez que hayan revisado su Autodiagnóstico, les invitamos a ingresar al Plan de Mejora EDUCA, donde podrán seleccionar  las acciones a implementar en su institución, de acuerdo a sus necesidades e intereses.
+        <p align="justify">La institución ha completado su cuestionario, para revisar los resultados de su Autodiagnóstico Institucional EDUCA, por favor entre a la siguiente liga: <a href="/#/selfAssessment">AUTODIAGNÓSTICO</a></p>
+        <p align="justify">Una vez que hayan revisado su Autodiagnóstico, les invitamos a ingresar al Plan de Mejora EDUCA, donde podrán seleccionar  las acciones a implementar en su institución, de acuerdo a sus necesidades e intereses.
         </p>
-        <p>Por favor entre a la siguiente liga: <a href="/#/improvementPlan">PLAN DE MEJORA</a></p>
+        <p align="justify">Por favor entre a la siguiente liga: <a href="/#/improvementPlan">PLAN DE MEJORA</a></p>
       </div>
     </div>
   </div>
@@ -37,17 +37,17 @@
               </div>
             </div>
             <div if.bind="!q.options">
-              <input checked.bind="q.value" type="radio" name="${q.id}" value="1" id="${q.id}-1"><label for="${q.id}-1">Cierto</label>
-              <input checked.bind="q.value" type="radio" name="${q.id}" value="2" id="${q.id}-2"><label for="${q.id}-2">Parcialmente</label>
-              <input checked.bind="q.value" type="radio" name="${q.id}" value="3" id="${q.id}-3"><label for="${q.id}-3">Falso</label>
-              <input checked.bind="q.value" type="radio" name="${q.id}" value="4" id="${q.id}-4"><label for="${q.id}-4">En proceso (lo trabjó en ciclo escolar anterior)</label>
-              <input checked.bind="q.value" type="radio" name="${q.id}" value="5" id="${q.id}-5"><label for="${q.id}-5">No aplica</label>
+              <input checked.bind="q.value" type="radio" name="${q.id}" value="cierto" id="${q.id}-1"><label for="${q.id}-1">Cierto</label>
+              <input checked.bind="q.value" type="radio" name="${q.id}" value="parcialmente" id="${q.id}-2"><label for="${q.id}-2">Parcialmente</label>
+              <input checked.bind="q.value" type="radio" name="${q.id}" value="falso" id="${q.id}-3"><label for="${q.id}-3">Falso</label>
+              <input checked.bind="q.value" type="radio" name="${q.id}" value="enProceso" id="${q.id}-4"><label for="${q.id}-4">En proceso (lo trabajó en ciclo escolar anterior)</label>
+              <input checked.bind="q.value" type="radio" name="${q.id}" value="na" id="${q.id}-5"><label for="${q.id}-5">No aplica</label>
             </div>
           </div>
           <div class="large-12 columns">
-            <p>Información adicional, en caso que su Institución tenga un nuevo programa educativo por favor comentelo aquí.</p>
+            <p align="justify">Información adicional, en caso que su Institución tenga un nuevo programa educativo por favor comentelo aquí.</p>
             <textarea placeholder="Comentarios" value.bind="selectedDimension.comment"></textarea>
-            <p class="textarea-print">${selectedDimension.comment}</p>
+            <p align="justify" class="textarea-print">${selectedDimension.comment}</p>
           </div>
           <div class="large-6 columns">
             Has contestado ${answeredQuestions} de ${totalProperties} preguntas
@@ -60,10 +60,11 @@
       </div>
     </div>
     <div class="row" show.bind="!questionnaireEnabled">
-      <div class="top-logo">
+      <div class="small-12 columns">
         <a href="/#/institutionDashboard" class="">Inicio</a>
+        <br/>
+        <br/>
       </div>
-
       <div class="top-logo">
         <div class="small-6 large-6 columns">
             <a href="/#/dimensions">
@@ -76,27 +77,32 @@
           </center>
         </div>
       </div>
-      <div class="row"></div>
+      <div class="row">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+      </div>
       <div class="small-12 columns">
         <h4 class="blueColor">Modelo de Colaboración EDUCA</h4>
-        <p>
+        <p align="justify">
           Bienvenido, aquí puede consultar el avance de: ${me.institution}
         </p>
-        <p>
+        <p align="justify">
           El Modelo de Colaboración EDUCA contempla 10 dimensiones que evalúan el fortalecimiento institucional y la calidad educativa de las instituciones de la RED EDUCA.
         </p>
-        <p>
+        <p align="justify">
           El punto de partida del Modelo de Colaboración EDUCA es un Autodiagnóstico Institucional. Si deseas conocer los aspectos que se evalúan por dimensión, da click aquí. (En este clic, mostrar el documento: Descripción de las dimensiones evaluadas por el Modelo EDUCA).
         </p>
-        <p>
+        <p align="justify">
           Te invitamos a realizar su Autodiagnóstico Institucional. Es importante guardar los cambios efectuados, para que en caso que no termines el proceso en una sola sesión, puedas continuar el llenado en la dimensión en la que detuviste la evaluación; de igual forma, te sugerimos que revises que todos los indicadores fueron contestados, porque de lo contrario no se generará la evaluación.
         </p>
-        <p>Las dudas o comentarios puedes dirigirlas a:
+        <p align="justify">Las dudas o comentarios puedes dirigirlas a:
           <a class="blueColor" href="mailto:monica5@educa.org.mx">monica5@educa.org.mx</a> ó
           <a class="blueColor" href="mailto:enriqueta.rodriguez@educa.org.mx">enriqueta.rodriguez@educa.org.mx</a>
         </p>
-        <p>¡Gracias por su atención!</p>
-        <!--toDo: Poner dos columnas  -->
+        <p align="justify">¡Gracias por su atención!</p>
+
         <div class="small-6 columns">
           <ol class="dim-list">
             <li repeat.for="d of dimensions" show.bind="d.id.number<= 5">
@@ -110,7 +116,7 @@
                          ${countAnswers(v)} de ${v.questions.length} contestadas
                       </span>
                     </div>
-                    <div if.bind="countAnswers(v) == v.questions.length">>
+                    <div if.bind="countAnswers(v) == v.questions.length">
                       <span style="color:black">
                          ${countAnswers(v)} de ${v.questions.length} contestadas
                       </span>
