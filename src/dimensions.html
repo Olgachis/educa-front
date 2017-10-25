@@ -29,11 +29,13 @@
       <div class="small- columns">
         <h4 class="blueColor">${selectedDimension.id.name}</h4>
         <form>
-          <div class="large-12 columns a-question q-${selectedDimension.id.number}-${q.id}" repeat.for="q of selectedDimension.questions">
-            <label>${q.question}</label>
+          <!--div class="row large-12 columns a-question q-${selectedDimension.id.number}-${q.id}" repeat.for="q of selectedDimension.questions"-->
+          <div class="row large-12 columns a-question " repeat.for="q of selectedDimension.questions">
+            <p>${q.question}</p>
             <div if.bind="q.options">
-              <div repeat.for="o of q.options">
-                <input checked.bind="q.value" type="radio" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}"><label for="${q.id}-${o.name}">${o.name}</label>
+              <div repeat.for="o of q.options"  class="medium-2 columns">
+                <input checked.bind="q.value" type="radio" name="${q.id}" value.bind="o.name" id="${q.id}-${o.name}">
+                <label for="${q.id}-${o.name}">${o.name}</label>
               </div>
             </div>
             <div if.bind="!q.options">
@@ -106,8 +108,7 @@
         <div class="small-6 columns">
           <ol class="dim-list">
             <li repeat.for="d of dimensions" show.bind="d.id.number<= 5">
-              <strong>${d.id.number}.</strong>
-              ${d.id.name}
+              <strong>${d.id.number}. ${d.id.name}.</strong>
               <ul>
                 <li repeat.for="v of d.subdimensions" >
                     <a click.delegate="showQuestionnaire(v)" style="color:black">${v.id.name}</a>
@@ -129,8 +130,8 @@
         <div class="small-6 columns">
           <ol class="dim-list">
             <li repeat.for="d of dimensions" show.bind="d.id.number > 5">
-              <strong>${d.id.number}.</strong>
-              ${d.id.name}
+              <strong>${d.id.number}. ${d.id.name}</strong>
+
               <ul>
                 <li repeat.for="v of d.subdimensions" >
                   <a click.delegate="showQuestionnaire(v)" style="color:black">${v.id.name}</a>
@@ -139,7 +140,7 @@
                          ${countAnswers(v)} de ${v.questions.length} contestadas
                       </span>
                   </div>
-                  <div if.bind="countAnswers(v) == v.questions.length">>
+                  <div if.bind="countAnswers(v) == v.questions.length">
                       <span style="color:black">
                          ${countAnswers(v)} de ${v.questions.length} contestadas
                       </span>
