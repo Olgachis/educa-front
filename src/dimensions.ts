@@ -95,6 +95,7 @@ export class Dimensions {
 
   async saveQuestionnaire() {
 
+    console.log('guardar', this.selectedDimension);
     Utils.showSpinner();
     let api = new Api(this.config);
     let response = api.fetch('/api/qualityEvaluation/' + this.selectedDimension.id.number, {

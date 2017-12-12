@@ -277,15 +277,15 @@ div.au-stagger {
 @media all {
    div.page-break{
       display: none;
-
    }
 }
 
-@media print{
-   div.page-break{
-      display:block;
-      page-break-before:always;
+@media print {
+   .pageBreak{
+      color:red !important;
+      page-break-after: avoid;
    }
+
 }
 
 @media print {
@@ -333,6 +333,12 @@ div.au-stagger {
 
 }
 
+@media print{
+    chart {
+      width:80%;
+      height:80%;
+    }
+}
 
 h1, h2, h3, h5 {
   color: #365E9E !important;

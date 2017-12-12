@@ -138,11 +138,11 @@ export class SelfAssessment {
         .x((d) => { return d.label; })
         .y((d) => { return d.value; })
         .width(560)
-        .height(500)
+        .height(400)
         .yDomain([0, 1])
         .color((d) => { return this.processColor(d); })
         .forceY([0,1])
-        .margin({bottom: 200});
+        .margin({bottom: 150});
 
       chart.xAxis.rotateLabels(-90);
       chart.yAxis.tickFormat(d3.format(',.3f'));
