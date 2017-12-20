@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div id="" show.bind="!finished">
+  <div id="" >
     <div class="row" show.bind="questionnaireEnabled">
       <div class="small- columns">
         <h4 class="blueColor">${selectedDimension.id.name}</h4>
@@ -109,7 +109,7 @@
         <div class="small-6 columns">
           <ol class="dim-list">
             <li repeat.for="d of dimensions" show.bind="d.id.number<= 5">
-              <strong>${d.id.number}. ${d.id.name}.</strong>
+              <strong>${d.id.number}. ${d.id.name}</strong>
               <ul>
                 <li repeat.for="v of d.subdimensions" >
                     <a click.delegate="showQuestionnaire(v)" style="color:black; text-decoration: underline ">${v.id.name}</a>
