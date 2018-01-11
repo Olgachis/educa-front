@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div id="" >
+  <div id="" show.bind="!finished">
     <div class="row" show.bind="questionnaireEnabled">
       <div class="small- columns">
         <h4 class="blueColor">${selectedDimension.id.name}</h4>
@@ -43,7 +43,7 @@
               <input checked.bind="q.value" type="radio" name="${q.id}" value="parcialmente" id="${q.id}-2"><label for="${q.id}-2">Parcialmente</label>
               <input checked.bind="q.value" type="radio" name="${q.id}" value="falso" id="${q.id}-3"><label for="${q.id}-3">Falso</label>
               <input checked.bind="q.value" type="radio" name="${q.id}" value="enProceso" id="${q.id}-4"><label for="${q.id}-4">En proceso (lo trabajó en ciclo escolar anterior)</label>
-              <input checked.bind="q.value" type="radio" name="${q.id}" value="na" id="${q.id}-5"><label for="${q.id}-5">No aplica</label>
+              <!--input checked.bind="q.value" type="radio" name="${q.id}" value="na" id="${q.id}-5"><label for="${q.id}-5">No aplica</label-->
             </div>
           </div>
           <div class="large-12 columns">
