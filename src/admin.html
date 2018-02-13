@@ -47,18 +47,19 @@
                 <tr>
                   <td repeat.for="d of i.dimensions">
                     <dl>
-                      <dd show.bind="d.score > 0 && d.score <= 55" class="dimensionSquare newTooltip" style="background-color: #C3002F">
+                      <dd show.bind="d.score >= 0 && d.score < 55" class="dimensionSquare newTooltip" style="background-color: #C3002F">
                         <span class="tooltiptext">${d.score}</span>
                       </dd>
-                      <dd show.bind="d.score >= 55 && d.score <= 70" class="dimensionSquare newTooltip" style="background-color: #BDA831">
+                      <dd show.bind="d.score >= 55 && d.score < 70" class="dimensionSquare newTooltip" style="background-color: #BDA831">
                         <span class="tooltiptext">${d.score}</span>
                       </dd>
-                      <dd show.bind="d.score >= 70 && d.score <= 85" class="dimensionSquare newTooltip" style="background-color: #3FAE49">
+                      <dd show.bind="d.score >= 70 && d.score < 85" class="dimensionSquare newTooltip" style="background-color: #3FAE49">
                         <span class="tooltiptext">${d.score}</span>
                       </dd>
                       <dd show.bind="d.score >= 85" class="dimensionSquare newTooltip" style="background-color: #365E9E">
                         <span class="tooltiptext">${d.score}</span>
                       </dd>
+                      ${d.score}
                     </dl>
                   </td>
                 </tr>
